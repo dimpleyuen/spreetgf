@@ -1,26 +1,50 @@
 $bootstrap-sass-asset-helper: false !default;
+
+$breakpoint-sm: 768px;
+$breakpoint-md: 992px;
+$breakpoint-lg: 1200px;
 //
 // Variables
 // --------------------------------------------------
 
+//----------------------------------------------------
+// Brand Colors
+//----------------------------------------------------
+$brand-blue-darker:       #404F60 !default;
+$brand-blue-dark:         #7792B2 !default;
+$brand-blue-normal:       #B2C8D8 !default;
+$brand-blue-light:        #C4DFED !default;
 
-//== Colors
-//
-//## Gray and brand colors for use across Bootstrap.
+$brand-teal:              #84C3BF !default; // highlight
 
-$gray-base:              #000 !default;
-$gray-darker:            lighten($gray-base, 13.5%) !default; // #222
-$gray-dark:              lighten($gray-base, 20%) !default;   // #333
-$gray:                   lighten($gray-base, 33.5%) !default; // #555
-$gray-light:             lighten($gray-base, 46.7%) !default; // #777
-$gray-lighter:           lighten($gray-base, 93.5%) !default; // #eee
+$brand-yellow-light:      #FFFEBE !default;
+$brand-yellow-strong:     #FFC744 !default;
 
-$brand-primary:         darken(#428bca, 6.5%) !default; // #337ab7
+$brand-brown-dark:        #4C3C29 !default;
+$brand-brown-normal:      #785E3A !default;
+$brand-brown-light:       #C3A57F !default;
+
+$brand-red-strong:        #da1159 !default;
+$brand-red-light:         lighten($brand-red-strong, 13.5%) !default;
+
+$brand-charcoal:          #89847F !default;
+
+//----------------------------------------------------
+// General Colors
+//----------------------------------------------------
+$gray-base:              #89847F !default;
+$gray:                   #89847F !default;
+$gray-darker:            darken($gray, 20%)    !default;
+$gray-dark:              darken($gray, 13.5%)  !default;
+$gray-light:             lighten($gray, 13.5%) !default;
+$gray-lighter:           lighten($gray, 20%)   !default;
+$white:                  lighten($gray, 100%)  !default;
+
+$brand-primary:         $brand-blue-dark !default; // #337ab7
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
 $brand-danger:          #d9534f !default;
-
 
 //== Scaffolding
 //
@@ -34,29 +58,30 @@ $text-color:            $gray-dark !default;
 //** Global textual link color.
 $link-color:            $brand-primary !default;
 //** Link hover color set via `darken()` function.
-$link-hover-color:      darken($link-color, 15%) !default;
+$link-hover-color:      $brand-blue-darker !default;
 //** Link hover decoration.
-$link-hover-decoration: underline !default;
+$link-hover-decoration: none !default;
 
 
 //== Typography
 //
 //## Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+$font-family-sans-serif:       "Lato-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-sans-serif-light: "Lato-Light", "Lato-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:            Georgia, "Times New Roman", Times, serif !default;
 //** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
 $font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
 $font-family-base:        $font-family-sans-serif !default;
 
-$font-size-base:          14px !default;
+$font-size-base:          15px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
-$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
-$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
-$font-size-h3:            ceil(($font-size-base * 1.7)) !default; // ~24px
-$font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
+$font-size-h1:            floor(($font-size-base * 2.15)) !default; // ~36px
+$font-size-h2:            floor(($font-size-base * 1.7)) !default; // ~30px
+$font-size-h3:            ceil(($font-size-base * 1.25)) !default; // ~24px
+$font-size-h4:            ceil(($font-size-base * 1.15)) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
 $font-size-h6:            ceil(($font-size-base * 0.85)) !default; // ~12px
 
@@ -352,7 +377,7 @@ $container-desktop:            (940px + $grid-gutter-width) !default;
 $container-md:                 $container-desktop !default;
 
 // Large screen / wide desktop
-$container-large-desktop:      (1140px + $grid-gutter-width) !default;
+$container-large-desktop:      (1000px + $grid-gutter-width) !default;
 //** For `$screen-lg-min` and up.
 $container-lg:                 $container-large-desktop !default;
 
@@ -425,7 +450,7 @@ $navbar-inverse-toggle-border-color:        #333 !default;
 
 //=== Shared nav styles
 $nav-link-padding:                          10px 15px !default;
-$nav-link-hover-bg:                         $gray-lighter !default;
+$nav-link-hover-bg:                         transparent !default;
 
 $nav-disabled-link-color:                   $gray-light !default;
 $nav-disabled-link-hover-color:             $gray-light !default;
@@ -709,7 +734,7 @@ $list-group-link-heading-color: #333 !default;
 
 $panel-bg:                    #fff !default;
 $panel-body-padding:          15px !default;
-$panel-heading-padding:       10px 15px !default;
+$panel-heading-padding:       10px 5px !default;
 $panel-footer-padding:        $panel-heading-padding !default;
 $panel-border-radius:         $border-radius-base !default;
 
