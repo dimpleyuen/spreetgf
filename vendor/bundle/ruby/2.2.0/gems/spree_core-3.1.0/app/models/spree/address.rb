@@ -93,7 +93,7 @@ module Spree
     end
 
     def require_zipcode?
-      true
+      false
     end
 
     private
