@@ -1,7 +1,8 @@
 module Spree
   module FrontendHelper
     def body_class
-      @body_class ||= content_for?(:sidebar) ? 'two-col' : 'one-col'
+      # @body_class ||= content_for?(:sidebar) ? 'two-col' : 'one-col'
+      @body_class ||= 'one-col'
       @body_class
     end
 
