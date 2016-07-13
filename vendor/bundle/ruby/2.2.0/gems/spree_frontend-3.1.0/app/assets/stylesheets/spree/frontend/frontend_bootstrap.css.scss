@@ -6,34 +6,62 @@
 
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
-  background: $brand-primary asset-url('spree_header.jpg') center center;
+  background: #FFFFFF asset-url('background.jpg') center center;
+  min-height: 300px;
+  height: 500px; /* fallback */
+  height: 50vh;
   background-size: cover;
   margin-bottom: $line-height-computed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
 
   #header {
-    background: rgba($gray-darker, 0.4);
+    background: rgba($white, 0.7);
     padding: $line-height-computed 0;
   }
 
   #logo {
-    margin-bottom: 10px;
-
     img {
       width: 100%;
     }
   }
 
   .nav a {
-    color: white;
+    color: $gray;
 
     &:hover, &:focus {
-      background: rgba($gray-darker, 0.4);
+      color: $gray-darker;
     }
   }
 
   .navbar {
     border: 0;
     margin-bottom: 0;
+  }
+
+  ul.nav.navbar-nav.navbar-right {
+    margin-top: 20px;
+    @media (min-width: $breakpoint-sm) {
+      margin-top: 2px;
+    }
+    li {
+      padding-left: 20px;
+      display: inline-block;
+      font-size: $font-size-base;
+      text-transform: uppercase;
+      &#link-to-cart {
+        float: right;
+      }
+      a {
+        display: inline-block;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
   }
 }
 
@@ -44,6 +72,129 @@
   color: white;
 }
 
+// -- How We Work Page ----------------------------------
+.how-we-work-blurb {
+  font-size: $font-size-base;
+  font-family: $font-family-sans-serif-light;
+  font-weight: 300;
+}
+
+.icon-blurb {
+  font-family: $font-family-sans-serif-light;
+  font-weight: 300;
+}
+
+.how-we-work {
+  margin: 30px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: $breakpoint-sm) {
+    flex-direction:row;
+    margin: 50px 0;
+  }
+
+
+  .how-we-work-icons {
+    flex-direction:row;
+    margin-bottom: 25px;
+    @media (min-width: $breakpoint-sm) {
+      padding: 0 15px;
+      margin-bottom: 0;
+    }
+    @media (min-width: $breakpoint-md) {
+      padding: 0 50px;
+    }
+
+    .glyphicon {
+      border: 5px dashed $brand-red-strong;
+      border-radius: 90px;
+      color: $brand-red-strong;
+      font-size: 60px;
+      padding: 35px;
+      transition: transform 0.7s;
+      -webkit-transition: -webkit-transform 0.7s;
+      -webkit-transform: rotateY(0deg);
+      transform: rotateY(0deg);
+      &:hover {
+        -webkit-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+      }
+      // background-color: #fef5e9;
+      // &:hover {
+      //   color: $brand-red-light;
+      //   border: 5px dashed $brand-red-light;
+      // }
+      @media (min-width: $breakpoint-sm) {
+        font-size: 55px;
+        padding: 35px;
+      }
+      @media (min-width: $breakpoint-md) {
+        font-size: 80px;
+        padding: 45px;
+      }
+    }
+  }
+}
+
+.call-to-action {
+  text-align: center;
+  margin-bottom: 50px;
+  .btn {
+    width: 300px;
+  }
+}
+
+
+// Products Page Taxonomy Headings -----------------------
+[id^=product] {
+  .taxonomy-root {
+    padding-left: 15px;
+  }
+}
+
+.product-separator {
+  margin: 0;
+}
+
+
+// -- Image Divider -------------------------------------
+.image-drinks {
+  background: #FFFFFF asset-url('drinks.jpg') center center;
+  min-height: 300px;
+  height: 500px; /* fallback */
+  height: 50vh;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  .quote {
+    background-color: rgba(255,255,255,0.6);
+    padding: 60px 0;
+    font-size: 30px;
+    align-self: stretch;
+    text-transform: uppercase;
+  }
+
+  .quote:before {
+    content: open-quote;
+    font-weight: bold;
+    font-size: 80px;
+    color: #f1b242;
+}
+  .quote:after {
+    content: close-quote;
+    font-weight: bold;
+    font-size: 80px;
+    color: #f1b242;
+}
+}
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }
@@ -51,7 +202,16 @@
 .alert-alert { @extend .alert-info; }
 
 .product-body {
-  height: 170px;
+  max-height: 357px;
+  @media (min-width: $breakpoint-sm) {
+    height: 279px;
+  }
+  @media (min-width: $breakpoint-md) {
+    height: 290px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    height: 311px !important;
+  }
 }
 
 .progress-steps {
@@ -84,13 +244,13 @@ table {
 }
 
 // Footer links
-#footer-left a {
-  color: lighten($brand-primary, 20);
+// #footer-left a {
+  // color: lighten($brand-primary, 20);
 
-  &:hover {
-    color: lighten($brand-primary, 10);
-  }
-}
+  // &:hover {
+    // color: lighten($brand-primary, 10);
+  // }
+// }
 
 // Updated credit-card image
 #credit-card-image {
