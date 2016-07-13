@@ -1,4 +1,5 @@
 Spree::Core::Engine.add_routes do
+  get '/shop', to: 'shop#index'
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       resources :promotions, only: [:show]
