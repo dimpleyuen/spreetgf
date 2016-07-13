@@ -18,26 +18,47 @@
 
 <% if products.any? %>
   <div id="products" class="row" data-hook>
-    <% products.each do |product| %>
+  <% @taxonomies.each do |taxonomy| %>
+    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Cocktail Set' %>
+      <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
+    <% end %>
+  <% end %>
+    <% products.each_with_index do |product, index| %>
       <% url = spree.product_url(product, taxon_id: @taxon.try(:id)) %>
-      <div id="product_<%= product.id %>" class="col-md-3 col-sm-6 col-xs-6 product-list-item" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
+      <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 col-xs-6 product-list-item" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
         <div class="panel panel-default">
           <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : cache_key_for_product(product)) do %>
-            <div class="panel-body text-center product-body">
-              <%= link_to url, itemprop: "url" do %>
-                <%= small_image(product, itemprop: "image") %><br/>
-                <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name) %>
-              <% end %>
-              <br/>
-            </div>
-            <div class="panel-footer text-center">
-              <span itemprop="offers" itemscope itemtype="https://schema.org/Offer">
-                <span class="price selling lead" itemprop="price"><%= display_price(product) %></span>
-              </span>
-            </div>
+            <%= link_to url, itemprop: "url", id: "product-icon" do %>
+              <div class="panel-body text-center product-body">
+                <div class="panel-image-wrap">
+                  <%= large_image(product, itemprop: "image") %><br/>
+                </div>
+                <!-- <br/> -->
+              </div>
+              <div class="panel-name-wrap">
+                <%= content_tag(:span, truncate(product.name, length: 50), class: 'panel-product-name', itemprop: "name", title: product.name) %>
+                <!-- <span class='glyphicon glyphicon-plus'></span> -->
+              </div>
+            <% end %>
+            <!-- <div class="panel-footer text-center"> -->
+              <!-- <span class="panel-item-info" itemprop="offers" itemscope itemtype="https://schema.org/Offer"> -->
+                <!-- <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name) %> -->
+                <!-- <br> -->
+                <!-- <span class="price selling lead" itemprop="price"><%= display_price(product) %></span> -->
+              <!-- </span> -->
+            <!-- </div> -->
           <% end %>
         </div>
       </div>
+      <% if index == 4 %>
+        <div class="row product-separator">
+        </div>
+        <% @taxonomies.each do |taxonomy| %>
+          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Party Package' %>
+            <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
+          <% end %>
+        <% end %>
+      <% end %>
     <% end %>
     <% reset_cycle("classes") %>
   </div>
