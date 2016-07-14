@@ -19,10 +19,10 @@
           <div class="links col-md-6 navbar-form pull-right text-right" data-hook="cart_buttons">
             <div class="form-group">
               <%= button_tag class: 'btn btn-primary', id: 'update-button' do %>
-                <%= Spree.t(:update) %>
+                <%= Spree.t(:update_cart) %>
               <% end %>
-              <%= button_tag class: 'btn btn-lg btn-success', id: 'checkout-link', name: 'checkout' do %>
-                <%= Spree.t(:checkout) %>
+              <%= button_tag class: 'btn btn-success', id: 'checkout-link', name: 'checkout' do %>
+                <%= Spree.t(:checkout!) %>
               <% end %>
             </div>
           </div>
@@ -31,11 +31,11 @@
     </div>
 
     <div id="empty-cart" class="col-md-6 pull-left" data-hook>
-      <%= form_tag empty_cart_path, method: :put do %>
-        <p id="clear_cart_link" data-hook>
-          <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %>
-          <%= Spree.t(:or) %>
-          <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %>
+      <!-- <%= form_tag empty_cart_path, method: :put do %> -->
+        <p class="back-to-menu"><a href="/shop"><span class="glyphicon glyphicon-chevron-left"></span>Continue Shopping</a></p>
+          <!-- <%= submit_tag Spree.t(:empty_cart), class: 'btn btn-default' %> -->
+          <!-- <%= Spree.t(:or) %> -->
+          <!-- <%= link_to Spree.t(:continue_shopping), products_path, class: 'continue' %> -->
         </p>
       <% end %>
     </div>

@@ -260,6 +260,31 @@
     width: 300px;
   }
 }
+
+// -- Shopping Cart Page --------------------------------
+#update-cart {
+  thead {
+    text-transform: uppercase;
+  }
+  .cart-item-description {
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+  .cart-item-price, .cart-item-total {
+    color: $text-color;
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+  .cart-item-image {
+    width: 125px;
+  }
+
+  .cart-item-quantity .line_item_quantity {
+    min-width: 50px;
+  }
+}
+
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }
