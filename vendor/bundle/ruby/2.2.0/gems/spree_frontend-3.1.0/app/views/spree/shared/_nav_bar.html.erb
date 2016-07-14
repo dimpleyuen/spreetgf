@@ -5,17 +5,19 @@
     <!-- </li> -->
   <!-- </ul> -->
 <!-- </nav> -->
-<ul class="nav navbar-nav navbar-right" data-hook>
-  <li id="link-to-shop" class="link-to-shop" data-hook>
-    <%= link_to Spree.t(:menu), spree.shop_path %>
-  </li>
+<div class="col-md-8">
+  <ul class="nav navbar-nav navbar-right" data-hook>
+    <li id="link-to-shop" class="link-to-shop" data-hook>
+      <%= link_to Spree.t(:menu), spree.shop_path %>
+    </li>
 
-  <li id="link-to-cart" class="link-to-cart" data-hook>
-    <noscript>
-      <%= link_to Spree.t(:cart), '/cart' %>
-    </noscript>
-    &nbsp;
-  </li>
-  <script>Spree.fetch_cart()</script>
-</ul>
+    <li id="link-to-cart" class="link-to-cart" data-hook>
+      <noscript>
+        <%= link_to Spree.t(:cart), '/cart' %>
+      </noscript>
+      &nbsp;
+    </li>
+    <script>Spree.fetch_cart()</script>
+  </ul>
+</div>
 <!-- </nav> -->
