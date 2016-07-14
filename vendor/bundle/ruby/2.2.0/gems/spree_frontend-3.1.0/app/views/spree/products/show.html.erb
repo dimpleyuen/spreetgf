@@ -7,7 +7,9 @@
         <div id="product-images" data-hook="product_images">
           <div id="main-image" class="panel panel-default" data-hook>
             <div class="panel-body text-center">
-              <%= render :partial => 'image' %>
+              <div class="product-show-image">
+                <%= render :partial => 'image' %> <!-- css: 80% ; above sm 100% -->
+              </div>
             </div>
           </div>
           <div id="thumbnails" data-hook>
@@ -38,10 +40,11 @@
             <%= render :partial => 'cart_form' %>
           </div>
         </div>
-
-        <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
+        <div>
+          <p class="back-to-menu"><a href="/shop"><span class="glyphicon glyphicon-chevron-left"></span>Back To Menu</a></p>
+        <!-- <div id="taxon-crumbs" class=" five " data-hook="product_taxons">
           <%= render :partial => 'taxons' %>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

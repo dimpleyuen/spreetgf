@@ -1484,7 +1484,7 @@ en:
     value: Value
     variant: Variant
     variant_placeholder: Choose a variant
-    variants: Variants
+    variants: Available Options
     version: Version
     void: Void
     weight: Weight

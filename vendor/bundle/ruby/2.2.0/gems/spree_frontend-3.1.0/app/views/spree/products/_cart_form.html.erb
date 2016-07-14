@@ -7,7 +7,7 @@
           <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
             <li>
               <%= radio_button_tag "variant_id", variant.id, index == 0,
-                  'data-price' => variant.price_in(current_currency).money, 
+                  'data-price' => variant.price_in(current_currency).money,
                   'data-in-stock' => variant.can_supply?
               %>
               <%= label_tag "variant_id_#{ variant.id }" do %>
@@ -32,12 +32,17 @@
     <% if @product.price_in(current_currency) && !@product.price.nil? %>
       <div data-hook="product_price" class="col-md-5">
         <div id="product-price">
-          <h6 class="product-section-title"><%= Spree.t(:price) %></h6>
+          <h3 class="product-section-title"><%= Spree.t(:price) %></h6>
           <div>
             <span class="lead price selling" itemprop="price">
               <%= display_price(@product) %>
             </span>
             <span itemprop="priceCurrency" content="<%= @product.currency %>"></span>
+            <% if @product.can_supply? %>
+            <!-- <span class="input-group-btn"> -->
+
+              <!-- </span> -->
+            <% end %>
           </div>
 
           <% if @product.master.can_supply? %>
@@ -50,14 +55,14 @@
 
         <% if @product.can_supply? %>
           <div class="add-to-cart">
-            <br />
-            <div class="input-group">
+            <!-- <br /> -->
+            <!-- <div class="input-group"> -->
               <%= number_field_tag :quantity, 1, class: 'title form-control', min: 1 %>
-              <span class="input-group-btn">
+              <!-- <span class="input-group-btn"> -->
                 <%= button_tag class: 'btn btn-success', id: 'add-to-cart-button', type: :submit do %>
                   <%= Spree.t(:add_to_cart) %>
-                <% end %>
-              </span>
+                <!-- <% end %> -->
+              <!-- </span> -->
             </div>
           </div>
         <% end %>

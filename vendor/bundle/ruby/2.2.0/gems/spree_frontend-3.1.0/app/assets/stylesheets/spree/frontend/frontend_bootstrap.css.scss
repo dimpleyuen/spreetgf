@@ -192,9 +192,75 @@
     font-weight: bold;
     font-size: 80px;
     color: #f1b242;
-}
+  }
 }
 
+// -- Product Show Page ---------------------------------
+#main-image {
+  border: none;
+  box-shadow: none;
+}
+
+.product-show-image {
+  img {
+    width: 60%;
+    height: 100%;
+    @media (min-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+}
+
+#product-properties tbody tr td:last-of-type {
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+.well {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+#product-variants ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: baseline;
+  input {
+    margin: 0;
+  }
+  label {
+    font-size: 18px;
+    font-family: 'Lato';
+    font-weight: 300;
+    cursor: pointer;
+    margin: 3px 5px;
+  }
+}
+
+.back-to-menu a {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+}
+
+.add-to-cart {
+  #quantity {
+    display: none;
+  }
+  text-align: center;
+  @media(min-width: $breakpoint-sm) {
+    text-align: left;
+  }
+  button {
+    margin-top: 20px;
+    width: 300px;
+  }
+}
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }
