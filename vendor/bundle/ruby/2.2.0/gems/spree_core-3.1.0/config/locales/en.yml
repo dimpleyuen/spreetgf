@@ -816,7 +816,7 @@ en:
     issued_on: Issued On
     item: Item
     item_description: Item Description
-    item_total: Item Total
+    item_total: Order Total
     item_total_rule:
       operators:
         gt: greater than
@@ -1000,7 +1000,7 @@ en:
       returned: returned
     order_summary: Order Summary
     order_sure_want_to: Are you sure you want to %{event} this order?
-    order_total: Order Total
+    order_total: Grand Total
     order_updated: Order Updated
     orders: Orders
     out_of_stock: Out of Stock
@@ -1285,7 +1285,7 @@ en:
       display_price:
         including_tax: "%{price} (incl. %{tax_amount} %{tax_rate_name})"
         excluding_tax: "%{price} (+ %{tax_amount} %{tax_rate_name})"
-    shipping_total: Shipping total
+    shipping_total: Shipping Total
     shop_by_taxonomy: Shop by %{taxonomy}
     shopping_cart: Shopping Cart
     show: Show

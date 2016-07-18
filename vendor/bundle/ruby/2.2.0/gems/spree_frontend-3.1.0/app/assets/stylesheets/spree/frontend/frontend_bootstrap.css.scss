@@ -289,7 +289,7 @@
   padding: 15px 10px;
 }
 
-ul#checkout-step-address li {
+ul#checkout-step-address li, ul#checkout-step-delivery li {
   cursor: default;
   &.active {
     border: 1px solid $link-color;
@@ -300,6 +300,90 @@ ul#checkout-step-address li {
     background-color: transparent;
     color: $link-color;
   }
+}
+
+.checkout-address-email {
+  margin: 0;
+  padding: 10px;
+}
+
+.inner {
+  padding: 10px;
+}
+
+label#use_billing {
+  margin-left: 10px;
+}
+
+#methods {
+  padding: 15px 10px;
+
+  .stock-contents thead {
+    border-top: 2px solid #dddddd;
+  }
+
+  .stock-item {
+    .item-name {
+      font-family: 'Lato';
+      font-weight: 300;
+    }
+  }
+}
+
+ul.shipping-methods {
+  margin: 0;
+
+  .shipping-method {
+    padding: 0;
+    padding-left: 10px;
+
+    label {
+      margin: 0;
+      input, span {
+        margin: 0;
+        vertical-align: middle
+      }
+      .rate-name {
+        font-family: 'Lato';
+        font-weight: 300;
+        padding: 0 5px;
+      }
+    }
+  }
+}
+
+.payment-information {
+  padding: 15px 10px;
+  ul {
+    margin-bottom: 15px;
+    li {
+      padding: 0;
+      label {
+        margin: 0;
+        input {
+          margin: 0;
+          vertical-align: middle;
+        }
+        span {
+          vertical-align: middle;
+          font-family: 'Lato';
+          font-weight: 300;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.coupon-code-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-left: 3px;
+}
+
+.coupon-code-input {
+  font-family: 'Lato';
+  font-weight: 300;
 }
 
 // -- Spree Layout Custom Rules -------------------------
