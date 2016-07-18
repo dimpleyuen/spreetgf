@@ -386,6 +386,20 @@ ul.shipping-methods {
   font-weight: 300;
 }
 
+// -- Confirmation Page ---------------------------------
+.thank-you-blurb, .summary-order-block {
+  font-family: 'Lato';
+  font-weight: 300
+}
+
+table#line-items {
+  thead { text-transform: uppercase; }
+  .order-summary-item-description {
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+}
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }

@@ -14,7 +14,7 @@
         <% if spree.respond_to? :root_path %>
           <li class="user-body">
             <div class="col-xs-12 text-center" data-hook="store-frontend-link">
-              <%= link_to Spree.t(:back_to_store), spree.root_path, :target => '_blank' %>
+              <span class="glyphicon glyphicon-chevron-left"></span> <%= link_to Spree.t(:back_to_store), spree.root_path, :target => '_blank' %>
             </div>
           </li>
         <% end %>
