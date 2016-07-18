@@ -289,6 +289,19 @@
   padding: 15px 10px;
 }
 
+ul#checkout-step-address li {
+  cursor: default;
+  &.active {
+    border: 1px solid $link-color;
+    border-radius: 3px;
+  }
+
+  a {
+    background-color: transparent;
+    color: $link-color;
+  }
+}
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }
