@@ -598,7 +598,7 @@ en:
     confirm_delete: Confirm Deletion
     confirm_password: Password Confirmation
     continue: Continue
-    continue_shopping: Continue shopping
+    continue_shopping: See Our Menu
     cost_currency: Cost Currency
     cost_price: Cost Price
     could_not_connect_to_jirafe: Could not connect to Jirafe to sync data. This will be automatically retried later.
@@ -1493,7 +1493,7 @@ en:
     width: Width
     year: Year
     you_have_no_orders_yet: You have no orders yet
-    your_cart_is_empty: Your cart is empty
+    your_cart_is_empty: Your shopping cart is currently empty. Click on 'Menu' to start shopping!
     your_order_is_empty_add_product: Your order is empty, please search for and add a product above
     zip: Zip
     zipcode: Zip Code

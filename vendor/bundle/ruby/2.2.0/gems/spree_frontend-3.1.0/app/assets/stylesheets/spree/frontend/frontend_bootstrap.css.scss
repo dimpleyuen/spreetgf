@@ -400,6 +400,14 @@ table#line-items {
   }
 }
 
+// -- Empty Cart ----------------------------------------
+.alert-empty-cart {
+  background-color: $gray-lightest;
+  border-color: 1px solid $gray-darker;
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
 // -- Spree Layout Custom Rules -------------------------
 
 .alert-notice { @extend .alert-success; }

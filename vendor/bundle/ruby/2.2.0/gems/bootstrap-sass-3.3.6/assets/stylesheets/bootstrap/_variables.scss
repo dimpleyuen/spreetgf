@@ -38,6 +38,7 @@ $gray-darker:            darken($gray, 20%)    !default;
 $gray-dark:              darken($gray, 13.5%)  !default;
 $gray-light:             lighten($gray, 13.5%) !default;
 $gray-lighter:           lighten($gray, 20%)   !default;
+$gray-lightest:           lighten($gray, 40%)   !default;
 $white:                  lighten($gray, 100%)  !default;
 
 $brand-primary:         $brand-blue-dark !default; // #337ab7
