@@ -1,0 +1,69 @@
+<% content_for :head do %>
+  <% if products.respond_to?(:total_pages) %>
+    <%= rel_next_prev_link_tags products %>
+  <% end %>
+<% end %>
+
+<div data-hook="products_search_results_heading">
+  <% if products.empty? %>
+    <div data-hook="products_search_results_heading_no_results_found">
+      <%= Spree.t(:no_products_found) %>
+    </div>
+  <% elsif params.key?(:keywords) %>
+    <div data-hook="products_search_results_heading_results_found">
+      <h6 class="search-results-title"><%= Spree.t(:search_results, keywords: h(params[:keywords])) %></h6>
+    </div>
+  <% end %>
+</div>
+
+<% if products.any? %>
+  <div id="products" class="row" data-hook>
+  <% @taxonomies.each do |taxonomy| %>
+    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Cocktail Set' %>
+      <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
+    <% end %>
+  <% end %>
+    <% products.each_with_index do |product, index| %>
+      <% url = spree.product_url(product, taxon_id: @taxon.try(:id)) %>
+      <div id="product_<%= product.id %>" class="col-md-4 col-sm-6 col-xs-6 product-list-item" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
+        <div class="panel panel-default">
+          <% cache(@taxon.present? ? [I18n.locale, current_currency, @taxon, product] : cache_key_for_product(product)) do %>
+            <%= link_to url, itemprop: "url", id: "product-icon" do %>
+              <div class="panel-body text-center product-body">
+                <div class="panel-image-wrap">
+                  <%= large_image(product, itemprop: "image") %><br/>
+                </div>
+                <!-- <br/> -->
+              </div>
+              <div class="panel-name-wrap">
+                <%= content_tag(:span, truncate(product.name, length: 50), class: 'panel-product-name', itemprop: "name", title: product.name) %>
+                <!-- <span class='glyphicon glyphicon-plus'></span> -->
+              </div>
+            <% end %>
+            <!-- <div class="panel-footer text-center"> -->
+              <!-- <span class="panel-item-info" itemprop="offers" itemscope itemtype="https://schema.org/Offer"> -->
+                <!-- <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name) %> -->
+                <!-- <br> -->
+                <!-- <span class="price selling lead" itemprop="price"><%= display_price(product) %></span> -->
+              <!-- </span> -->
+            <!-- </div> -->
+          <% end %>
+        </div>
+      </div>
+      <% if index == 5 %>
+        <div class="row product-separator">
+        </div>
+        <% @taxonomies.each do |taxonomy| %>
+          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Party Package' %>
+            <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <% reset_cycle("classes") %>
+  </div>
+<% end %>
+
+<% if products.respond_to?(:total_pages) %>
+  <%= paginate products, theme: 'twitter-bootstrap-3' %>
+<% end %>
