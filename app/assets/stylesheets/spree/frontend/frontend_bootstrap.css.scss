@@ -1,9 +1,15 @@
 //Add your custom bootstrap variables here, see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss for full list of variables.
 
-@import "bootstrap";
 @import "bootstrap-sprockets";
+@import "bootstrap";
 @import "variables";
 @import "../../bootstrap/_variables.scss";
+@import "../../bootstrap/_grid.scss";
+@import "../../bootstrap/_list-group.scss";
+@import "../../bootstrap/_navbar.scss";
+@import "../../bootstrap/_navs.scss";
+@import "../../bootstrap/_normalize.scss";
+@import "../../bootstrap/_panels.scss";
 
 // -- Spree Custom Header and Footer ---------------------
 #spree-header {
@@ -199,6 +205,9 @@
 #main-image {
   border: none;
   box-shadow: none;
+  .panel-body {
+    padding: 0;
+  }
 }
 
 .product-show-image {
@@ -420,6 +429,7 @@ table#line-items {
 .alert-alert { @extend .alert-info; }
 
 .product-body {
+  padding: 0;
   max-height: 357px;
   @media (min-width: $breakpoint-sm) {
     height: 279px;

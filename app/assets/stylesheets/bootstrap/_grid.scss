@@ -1,0 +1,7 @@
+// $breakpoint-lg: 1200px;
+
+@media (min-width: $breakpoint-lg) {
+  .container {
+    width: 1000px;
+  }
+}
