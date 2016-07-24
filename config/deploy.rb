@@ -6,8 +6,9 @@
 # 5. clean password yml in local
 # 6. config nginx
 
-require "bundler/capistrano" 
 require "rvm/capistrano"
+require "bundler/capistrano"
+
 set :application, 'spreetgf'
 set :user, 'root'
 set :domain, '128.199.241.21'
@@ -19,7 +20,7 @@ set :scm, 'git'
 set :repository, "git@github.com:dimpleyuen/spreetgf.git"
 set :git_enable_submodules, 1 # if you have vendored rails
 set :branch, "deploy"
-set :git_shallow_clone, 1
+# set :git_shallow_clone, 1
 set :scm_verbose, true
 
 # roles (servers)
@@ -31,6 +32,8 @@ role :db,  domain, :primary => true
 set :deploy_to, applicationdir
 set :deploy_via, :export
 set :keep_releases, 5
+# set :rvm_ruby_string, 'ruby 2.3.0p0' # Change to your ruby version
+set :rvm_type, :system
 
 # rvm
 set :rvm_bin_path, "/usr/local/rvm/bin"
