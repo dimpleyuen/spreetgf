@@ -1,9 +1,0 @@
-\#*
-*~
-.#*
-.DS_Store
-tmp
-spec/dummy
-Gemfile.lock
-.rvmrc
-coverage

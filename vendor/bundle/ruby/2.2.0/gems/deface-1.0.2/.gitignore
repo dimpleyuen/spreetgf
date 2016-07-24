@@ -1,6 +1,0 @@
-*.swp
-.DS_Store
-pkg
-Gemfile.lock
-coverage/
-.bundle/

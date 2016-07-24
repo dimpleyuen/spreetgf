@@ -18,7 +18,7 @@ set :environment, 'production'
 set :scm, 'git'
 set :repository, "git@github.com:dimpleyuen/spreetgf.git"
 set :git_enable_submodules, 1 # if you have vendored rails
-set :branch, fetch(:branch, "master")
+set :branch, "deploy"
 set :git_shallow_clone, 1
 set :scm_verbose, true
 

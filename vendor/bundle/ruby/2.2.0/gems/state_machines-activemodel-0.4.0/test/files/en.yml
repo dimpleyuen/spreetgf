@@ -1,5 +1,0 @@
-en:
-  activemodel:
-    errors:
-      messages:
-        invalid_transition: "cannot %{event}"
