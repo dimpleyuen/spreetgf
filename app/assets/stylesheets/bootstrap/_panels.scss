@@ -2,7 +2,10 @@
 // $breakpoint-md: 992px;
 // $breakpoint-lg: 1200px;
 // $font-family-sans-serif-light: "Lato-Light", "Lato-Regular", "Helvetica Neue", Helvetica, Arial, sans-serif !default;
-$font-size-base:          15px !important;
+// $font-size-base:          15px !important;
+// $gray:                   #89847F !default;
+// $gray-darker:            darken($gray, 20%)    !default;
+@import "_variables.scss";
 
 .panel {
   // Panel contents
