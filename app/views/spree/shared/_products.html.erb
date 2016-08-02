@@ -50,7 +50,7 @@
           <% end %>
         </div>
       </div>
-      <% if index == 5 %>
+      <% if (products[index+1].try(:slug) || 'no val').include? '10pax' %>
         <div class="row product-separator">
         </div>
         <% @taxonomies.each do |taxonomy| %>
