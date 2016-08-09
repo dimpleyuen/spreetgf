@@ -998,11 +998,16 @@ en:
         order_summary_canceled: Order %{number} Summary [CANCELED]
         subject: Cancellation of Order
       confirm_email:
-        dear_customer: Dear Customer,
-        instructions: Please review and retain the following order information for your records.
-        order_summary: Order %{number} Summary
+        dear_customer: "Hooray!"
+        blurb_1: "We've successfully received your drinks order. According to our philosophy, "
+        philosophy: "a great story always starts with a drink (or two)..."
+        blurb_2: " so get ready for some fun!"
+        instructions: "Please keep this confirmation email for your record and a sales representative will be in contact with you shortly to make sure you're all set."
+        order_summary: "Order Number: %{number}"
         subject: Order Confirmation
-        thanks: Thank you for your business.
+        thanks: "Thank you for ordering with The Glass Formula, until then, happy drinking!"
+        signature_head: "Cheers,"
+        signature_name: The Glass Formula Team
     order_not_found: We couldn't find your order. Please try that action again.
     order_number: Order %{number}
     order_processed_successfully: Your order has been processed successfully

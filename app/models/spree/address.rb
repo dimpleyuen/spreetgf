@@ -8,7 +8,7 @@ module Spree
     has_many :shipments, inverse_of: :address
 
     with_options presence: true do
-      validates :firstname, :lastname, :address1, :country, #:city
+      validates :firstname, :lastname, :address1, :country #, :city
       validates :zipcode, if: :require_zipcode?
       validates :phone, if: :require_phone?
     end
