@@ -56,8 +56,9 @@
 
 [id^=product-icon] {
   .panel-name-wrap { display: none; }
-  &:hover {
+  &:hover, &:active, &:focus {
     .panel-name-wrap {
+      outline: none;
       display: flex;
       justify-content: center;
       align-items: center;
