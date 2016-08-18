@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160713101381) do
+ActiveRecord::Schema.define(version: 20160818114988) do
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string   "slug",           limit: 255, null: false
@@ -292,6 +292,7 @@ ActiveRecord::Schema.define(version: 20160713101381) do
     t.integer  "state_lock_version",           limit: 4,                              default: 0,       null: false
     t.decimal  "taxable_adjustment_total",                   precision: 10, scale: 2, default: 0.0,     null: false
     t.decimal  "non_taxable_adjustment_total",               precision: 10, scale: 2, default: 0.0,     null: false
+    t.datetime "delivery_datetime"
   end
 
   add_index "spree_orders", ["approver_id"], name: "index_spree_orders_on_approver_id", using: :btree
@@ -301,6 +302,7 @@ ActiveRecord::Schema.define(version: 20160713101381) do
   add_index "spree_orders", ["confirmation_delivered"], name: "index_spree_orders_on_confirmation_delivered", using: :btree
   add_index "spree_orders", ["considered_risky"], name: "index_spree_orders_on_considered_risky", using: :btree
   add_index "spree_orders", ["created_by_id"], name: "index_spree_orders_on_created_by_id", using: :btree
+  add_index "spree_orders", ["delivery_datetime"], name: "index_spree_orders_on_delivery_datetime", using: :btree
   add_index "spree_orders", ["guest_token"], name: "index_spree_orders_on_guest_token", using: :btree
   add_index "spree_orders", ["number"], name: "index_spree_orders_on_number", using: :btree
   add_index "spree_orders", ["ship_address_id"], name: "index_spree_orders_on_ship_address_id", using: :btree
