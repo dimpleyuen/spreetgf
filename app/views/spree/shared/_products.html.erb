@@ -19,7 +19,7 @@
 <% if products.any? %>
   <div id="products" class="row" data-hook>
   <% @taxonomies.each do |taxonomy| %>
-    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Pitcher Cocktails' %>
+    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Mini Bar' %>
       <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
     <% end %>
   <% end %>
@@ -50,11 +50,11 @@
           <% end %>
         </div>
       </div>
-      <% if (products[index+1].try(:slug) || 'no val').include? '10pax' %>
+      <% if (products[index+1].try(:slug) || 'no val').include? 'a-long-voyage' %>
         <div class="row product-separator">
         </div>
         <% @taxonomies.each do |taxonomy| %>
-          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Party Package' %>
+          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Occasion' %>
             <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
           <% end %>
         <% end %>
