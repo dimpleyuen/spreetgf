@@ -36,13 +36,18 @@
               <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
                 <tr>
                   <td class="six sub-columns">
-                    <%= Spree.t(:shipping) %> <%= name %>:
+                    <%= Spree.t(:shipping) %> <%= name %> (<%= @order.delivery_datetime.strftime('%d %B %Y') %>):
                   </td>
                   <td class="six sub-columns last right">
                     <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
                   </td>
                 </tr>
               <% end %>
+              <tr>
+                <td class="six sub-columns">
+                  Shipping Instructions: <%= @order.special_instructions %>
+                </td>
+              </tr>
               <% if @order.all_adjustments.eligible.tax.exists? %>
                 <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
                   <tr>
