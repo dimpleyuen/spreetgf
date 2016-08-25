@@ -35,3 +35,55 @@
     </td>
   </tr>
 <% end %>
+
+<script type="text/javascript">
+  $(".line_item_quantity").keyup(function() {
+    // update line total
+    if ($(this).val() == "") {
+      $(this).parent().next().html("$0.00");
+
+    //update grand total
+    var grandTotal = 0;
+    $('.cart-item-total').each(function() {
+       grandTotal += Number($(this).html().replace("$",""));
+    });
+    $('.lead').last().html("$" + grandTotal.toFixed(2));
+
+    } else {
+      var price = $(this).val() * Number($(this).parent().prev().html().replace("$",""));
+      $(this).parent().next().html("$" + price.toFixed(2));
+
+    //update grand total
+    var grandTotal = 0;
+    $('.cart-item-total').each(function() {
+       grandTotal += Number($(this).html().replace("$",""));
+    });
+    $('.lead').last().html("$" + grandTotal.toFixed(2));
+    }
+  });
+</script>
+
+<!-- (function() {
+  Spree.ready(function($) {
+    if (($('form#update-cart')).is('*')) {
+      ($('form#update-cart a.delete')).show().one('click', function() {
+        ($(this)).parents('.line-item').first().find('input.line_item_quantity').val(0);
+        ($(this)).parents('form').first().submit();
+        return false;
+      });
+    }
+    return ($('form#update-cart')).submit(function() {
+      return ($('form#update-cart #update-button')).attr('disabled', true);
+    });
+  });
+
+  Spree.fetch_cart = function() {
+    return $.ajax({
+      url: Spree.pathFor("cart_link"),
+      success: function(data) {
+        return $('#link-to-cart').html(data);
+      }
+    });
+  };
+
+}).call(this); -->
