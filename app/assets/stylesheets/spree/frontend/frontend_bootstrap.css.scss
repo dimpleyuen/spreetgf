@@ -253,11 +253,11 @@ $font-size-base: 16px;
   }
 }
 
-.back-to-menu a {
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-}
+// .back-to-menu a {
+//   display: flex;
+//   align-items: center;
+//   margin-top: 30px;
+// }
 
 .add-to-cart {
   #quantity {
@@ -298,6 +298,16 @@ $font-size-base: 16px;
   .cart-item-quantity .line_item_quantity {
     min-width: 50px;
   }
+}
+
+.cart-item-total-header {
+  min-width: 120px;
+}
+
+#cart_adjustments td h5 {
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: $font-size-base;
 }
 
 // -- Checkout / Registration Page ----------------------
