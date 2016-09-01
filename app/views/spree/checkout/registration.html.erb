@@ -6,9 +6,11 @@
   <!-- </div> -->
   <% if Spree::Config[:allow_guest_checkout] %>
     <div class="col-md-8 col-md-offset-2">
+    <!-- <h3>Express Checkout With Email</h3> -->
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title"><%= Spree.t(:guest_user_account) %></h3>
+          <h3 class="panel-title">Express Checkout With Email</h3>
+          <!-- <h3 class="panel-title"><%= Spree.t(:guest_user_account) %></h3> -->
         </div>
         <div id="guest_checkout" class="panel-body" data-hook>
           <% if flash[:registration_error] %>
