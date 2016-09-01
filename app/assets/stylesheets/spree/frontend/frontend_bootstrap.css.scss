@@ -235,6 +235,7 @@ $font-size-base: 16px;
   box-shadow: none;
   font-family: 'Lato';
   font-weight: 300;
+  margin-bottom: 0;
 }
 
 #product-variants ul li {
@@ -277,6 +278,57 @@ $font-size-base: 16px;
   padding: 0;
 }
 
+button#add-to-cart-button {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+}
+
+#show-table, #hide-table {
+  font-style: italic;
+  text-decoration: underline;
+  color: $brand-primary;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#product-description {
+  .table-responsive {
+    display: none;
+    .note {
+      color: $brand-primary;
+    }
+  }
+
+  #size-chart {
+    thead {
+      font-weight: normal;
+      background-color: lightgray;
+    }
+    td {
+      padding: 5 10px;
+      // border: 1px solid lightgray;
+      &.item {
+        min-width: 220px;
+        vertical-align: middle;
+        u {
+          padding-left: 20px;
+        }
+      }
+      &.size {
+        min-width: 100px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
 // -- Shopping Cart Page --------------------------------
 #update-cart {
   thead {
@@ -308,6 +360,24 @@ $font-size-base: 16px;
   font-family: 'Lato';
   font-weight: 300;
   font-size: $font-size-base;
+}
+
+button#update-button {
+  background: transparent;
+  color: $brand-primary;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+button#checkout-link {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
 }
 
 // -- Checkout / Registration Page ----------------------
@@ -410,6 +480,24 @@ ul.shipping-methods {
 .coupon-code-input {
   font-family: 'Lato';
   font-weight: 300;
+}
+
+input.btn.btn-lg.btn-success.btn-block {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+input.btn.btn-lg.btn-success {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
 }
 
 // -- Confirmation Page ---------------------------------

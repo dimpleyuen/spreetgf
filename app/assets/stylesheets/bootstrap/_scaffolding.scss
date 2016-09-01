@@ -2,10 +2,19 @@ a:hover, a:focus {
   text-decoration: none;
 }
 
-body {
+body,
+input,
+button,
+select,
+textarea {
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
-  line-height: 1.42857143;
-  color: #333333;
-  background-color: #fff;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 300;
 }
