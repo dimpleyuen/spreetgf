@@ -30,9 +30,9 @@
     <td class="lead text-primary cart-item-total" data-hook="cart_item_total">
       <%= line_item.display_amount.to_html unless line_item.quantity.nil? %>
     </td>
-    <td class="cart-item-delete" data-hook="cart_item_delete">
+    <!-- <td class="cart-item-delete" data-hook="cart_item_delete">
       <%= link_to content_tag(:span, '', class: 'glyphicon glyphicon-minus-sign'), '#', class: 'delete', id: "delete_#{dom_id(line_item)}" %>
-    </td>
+    </td> -->
   </tr>
 <% end %>
 
@@ -45,18 +45,18 @@
     //update grand total
     var grandTotal = 0;
     $('.cart-item-total').each(function() {
-       grandTotal += Number($(this).html().replace("$",""));
+       grandTotal += Number($(this).html().replace("$","").replace(/,/g, ""));
     });
     $('.lead').last().html("$" + grandTotal.toFixed(2));
 
     } else {
-      var price = $(this).val() * Number($(this).parent().prev().html().replace("$",""));
+      var price = $(this).val() * Number($(this).parent().prev().html().replace("$","").replace(/,/g, ""));
       $(this).parent().next().html("$" + price.toFixed(2));
 
     //update grand total
     var grandTotal = 0;
     $('.cart-item-total').each(function() {
-       grandTotal += Number($(this).html().replace("$",""));
+       grandTotal += Number($(this).html().replace("$","").replace(/,/g, ""));
     });
     $('.lead').last().html("$" + grandTotal.toFixed(2));
     }
