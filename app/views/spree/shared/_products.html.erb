@@ -54,7 +54,7 @@
         <div class="row product-separator">
         </div>
         <% @taxonomies.each do |taxonomy| %>
-          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Occasion' %>
+          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Packages' %>
             <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
           <% end %>
         <% end %>
