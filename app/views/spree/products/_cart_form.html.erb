@@ -3,7 +3,7 @@
     <% if @product.variants_and_option_values(current_currency).any? %>
       <div id="product-variants" class="col-md-6">
         <!-- <h3 class="product-section-title"><%= Spree.t(:variants) %></h3> -->
-        <h3 class="product-section-title">Options</h3>
+        <h3 class="product-section-title">Available Sizes:</h3>
         <ul class="list-group">
           <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
             <li>
@@ -13,11 +13,11 @@
               %>
               <%= label_tag "variant_id_#{ variant.id }" do %>
                 <span class="variant-description">
-                  <%= variant_options variant %>
+                  <%= (variant_options variant).gsub("Serving Size: ", "") %>
                 </span>
-                <% if variant_price variant %>
+                <!-- <% if variant_price variant %>
                   <span class="price diff"><%= variant_price variant %></span>
-                <% end %>
+                <% end %> -->
                 <% unless variant.can_supply? %>
                   <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
                 <% end %>
@@ -55,7 +55,7 @@
         </div>
 
         <% if @product.can_supply? %>
-          <p>with free delivery</p>
+          <p>(Delivery included)</p>
           <div class="add-to-cart">
             <!-- <br /> -->
             <!-- <div class="input-group"> -->
