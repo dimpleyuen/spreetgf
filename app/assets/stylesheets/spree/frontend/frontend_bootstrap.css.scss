@@ -76,8 +76,10 @@ $font-size-base: 16px;
 #spree-footer {
   background: $gray-dark;
   padding-top: $padding-base-horizontal;
+  padding-bottom: $padding-base-horizontal;
   margin-top: $line-height-computed;
   color: white;
+  font-size: 10px !important;
 }
 
 // -- How We Work Page ----------------------------------
