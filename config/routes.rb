@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   # root 'welcome#index'
   Spree::Core::Engine.add_routes do
     get '/shop',        to: 'shop#index'
+    get '/terms',       to: 'terms#index'
     get '/customize',   to: 'customize#index'
 
     put '/contact',     to: 'contact#deliver_contact_email'

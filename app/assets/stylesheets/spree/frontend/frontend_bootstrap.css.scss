@@ -80,6 +80,10 @@ $font-size-base: 16px;
   margin-top: $line-height-computed;
   color: white;
   font-size: 10px !important;
+  span {
+    font-size: 12px !important;
+    cursor: pointer;
+  }
 }
 
 // -- How We Work Page ----------------------------------
