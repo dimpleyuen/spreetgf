@@ -83,12 +83,15 @@ $font-size-base: 16px;
   span {
     font-size: 12px !important;
     cursor: pointer;
+    &.address {
+      font-size: 14px !important;
+    }
   }
 }
 
 // -- How We Work Page ----------------------------------
 .how-we-work-blurb {
-  font-size: $font-size-base;
+  font-size: 17px;
   font-family: $font-family-sans-serif-light;
   font-weight: 300;
 }
@@ -243,6 +246,13 @@ $font-size-base: 16px;
   }
 }
 
+#thumbnails {
+  text-align: center;
+  @media (min-width: $breakpoint-sm) {
+    text-align: left;
+  }
+}
+
 #product-properties tbody tr td:last-of-type {
   font-family: 'Lato';
   font-weight: 300;
@@ -284,11 +294,12 @@ $font-size-base: 16px;
   }
 }
 
-// .back-to-menu a {
-//   display: flex;
-//   align-items: center;
-//   margin-top: 30px;
-// }
+.back-to-menu {
+  display: none;
+  @media (min-width: $breakpoint-sm) {
+    display: block;
+  }
+}
 
 .add-to-cart {
   clear: both;
