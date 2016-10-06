@@ -24,12 +24,22 @@
 
   > img {
     position: relative;
-    left: -15px;
+    left: -8px;
     width: 110%;
     top: 0px;
+    @media (min-width: 460px) {
+      left: -10px;
+    }
+    @media (min-width: 550px) {
+      left: -12px;
+    }
+    @media (min-width: 650px) {
+      left: -13px;
+    }
     @media (min-width: $breakpoint-sm) {
+      left: -15px;
       width: 110%;
-      top: -10px;
+      top: -15px;
     }
   }
 }
@@ -56,7 +66,7 @@
 
 [id^=product-icon] {
   .panel-name-wrap { display: none; }
-  &:hover, &:active, &:focus {
+  &:hover, &:active {
     .panel-name-wrap {
       outline: none;
       display: flex;
