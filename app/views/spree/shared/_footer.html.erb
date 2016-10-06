@@ -2,7 +2,7 @@
   <footer id="footer" data-hook>
     <div class="container">
       <div class="row text-center">
-        <img src="assets/logo/TGF_round_logo_white.png" class="logo-footer">
+        <%= image_tag Spree::Config[:footer_logo], class: 'logo-footer', alt: "Footer Logo", title: Spree::Store.current.name %>
         <br>
         <span><a href="/terms">TERMS & CONDITIONS</a>&nbsp;&nbsp; | &nbsp;&nbsp;<a href='/terms'>DELIVERY POLICY</a></span>
         <br>

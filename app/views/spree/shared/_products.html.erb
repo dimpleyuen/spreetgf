@@ -75,7 +75,7 @@
             <a href="/customize" id="product-icon">
               <div class="panel-body text-center product-body">
                 <div class="panel-image-wrap">
-                  <img src="assets/customize.jpg" width="500", height: "500" />
+                  <%= image_tag Spree::Config[:customize_package_image], width: "500px", alt: "Customize Your Own Package", title: Spree::Store.current.name %>
                 </div>
                 <!-- <br/> -->
               </div>
