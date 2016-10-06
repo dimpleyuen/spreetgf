@@ -999,9 +999,7 @@ en:
         subject: Cancellation of Order
       confirm_email:
         dear_customer: "Hooray!"
-        blurb_1: "We've successfully received your drinks order. According to our philosophy, "
-        philosophy: "a great story always starts with a drink (or two)..."
-        blurb_2: " so get ready for some fun!"
+        blurb_1: "We have successfully received your order."
         instructions: "Please keep this confirmation email for your record and a sales representative will be in contact with you shortly to make sure you're all set."
         order_summary: "Order Number: %{number}"
         subject: Order Confirmation
