@@ -22,6 +22,7 @@ module Spree
     # Alphabetized to more easily lookup particular preferences
     preference :address_requires_state, :boolean, default: true # should state/state_name be required
     preference :admin_interface_logo, :string, default: 'logo/TGF_logo_big.png'
+    preference :email_banner, :string, default: 'logo/TGF_logo_big_inverted.png'
     preference :customize_package_image, :string, default: 'customize.jpg'
     preference :footer_logo, :string, default: 'logo/TGF_round_logo_white.png'
     preference :admin_path, :string, default: '/admin'
