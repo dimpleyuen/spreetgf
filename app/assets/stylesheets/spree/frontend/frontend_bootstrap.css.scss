@@ -90,11 +90,21 @@ $font-size-base: 16px;
 }
 
 img.logo-footer {
-  width: 100px;
+  width: 80px;
   margin: 10px;
+  @media (min-width: $breakpoint-sm) {
+    width: 100px;
+  }
 }
 
 // -- How We Work Page ----------------------------------
+.main-heading {
+  font-size: 26px;
+  @media (min-width: 450px) {
+    font-size: 30px;
+  }
+}
+
 .how-we-work-blurb {
   font-size: 17px;
   font-family: $font-family-sans-serif-light;
@@ -262,22 +272,31 @@ img.logo-footer {
   .quote {
     background-color: rgba(255,255,255,0.6);
     padding: 60px 0;
-    font-size: 30px;
+    font-size: 26px;
     align-self: stretch;
     text-transform: uppercase;
+    @media (min-width: 450px) {
+      font-size: 30px;
+    }
   }
 
   .quote:before {
     content: open-quote;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 45px;
     color: #f1b242;
-}
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
+  }
   .quote:after {
     content: close-quote;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 45px;
     color: #f1b242;
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
   }
 }
 
