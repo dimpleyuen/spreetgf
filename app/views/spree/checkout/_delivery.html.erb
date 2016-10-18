@@ -80,7 +80,7 @@
         </div>
       <% end %>
       <br>
-      <%= form.text_field :delivery_datetime, :placeholder => "Select Your Delivery Date", :cols => 40, :rows => 4, :class => "form-control datepicker" %>
+      <%= form.text_field :delivery_datetime, :placeholder => "Select Your Delivery Date", :required => true, :cols => 40, :rows => 4, :class => "form-control datepicker" %>
                 <br>
       <%= form.text_area :special_instructions, :placeholder => "Additional Comments / Special Requests", :cols => 40, :rows => 4, :class => "form-control" %>
     </div>
