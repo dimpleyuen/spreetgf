@@ -20,3 +20,4 @@
 !/log/.keep
 /tmp
 /vendor/bundle
+config/sitemap.rbpublic/sitemap*
