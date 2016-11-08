@@ -48,10 +48,8 @@ SitemapGenerator::Sitemap.create do
   # add_account
   # add_password_reset
   add shop_path, priority: 0.0, changefreq: 'weekly'
-  add cart_path, priority: 0.0, changefreq: 'monthly'
-  add('/terms', options = {})
-  add('/customize', options = {})
-
+  add('/customize', options = {priority: 0.0, changefreq: 'weekly'})
+  add('/terms', options = {changefreq: 'monthly'})
   add_taxons
   add_products
 end
