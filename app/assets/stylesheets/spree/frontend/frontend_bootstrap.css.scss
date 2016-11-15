@@ -82,7 +82,9 @@ $font-size-base: 16px;
   font-size: 10px !important;
   span {
     font-size: 12px !important;
-    cursor: pointer;
+    &.links {
+      cursor: pointer;
+    }
     &.address {
       font-size: 14px !important;
     }
@@ -270,17 +272,32 @@ img.logo-footer {
   justify-content: center;
 
   .quote {
+    width: 100%;
     background-color: rgba(255,255,255,0.6);
-    padding: 60px 0;
-    font-size: 26px;
-    align-self: stretch;
-    text-transform: uppercase;
-    @media (min-width: 450px) {
-      font-size: 30px;
+    padding: 40px 0;
+    .quote-text {
+      font-size: 26px;
+      align-self: stretch;
+      text-transform: uppercase;
+      @media (min-width: 450px) {
+        font-size: 30px;
+        margin: 20px;
+      }
+      #break {
+        @media (min-width: 625px) {
+          display: block;
+        }
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+    }
+    #company-name {
+      text-transform: uppercase;
     }
   }
 
-  .quote:before {
+  .quote-text:before {
     content: open-quote;
     font-weight: bold;
     font-size: 45px;
@@ -289,7 +306,7 @@ img.logo-footer {
       font-size: 80px;
     }
   }
-  .quote:after {
+  .quote-text:after {
     content: close-quote;
     font-weight: bold;
     font-size: 45px;
