@@ -51,10 +51,19 @@ module Spree
       end
 
       # for customize page
-      if controller_name.singularize == 'customize'
+      case controller_name.singularize
+      when 'shop'
+        meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
+        meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
+      when 'customize'
+        meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
+        meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
+      when 'term'
         meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
         meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
       end
+
+
 
       meta.reverse_merge!({
         keywords: current_store.meta_keywords,
