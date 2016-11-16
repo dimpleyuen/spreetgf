@@ -27,7 +27,10 @@ $font-size-base: 16px;
 
   #header {
     background: rgba($white, 0.7);
-    padding: $line-height-computed 0;
+    padding: 20px 0 10px;
+    @media (min-width: $breakpoint-sm) {
+      padding: $line-height-computed 0;
+    }
   }
 
   #logo {
@@ -49,8 +52,20 @@ $font-size-base: 16px;
     margin-bottom: 0;
   }
 
+  .navbar-brand {
+    padding-left: 0;
+    @media (min-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  button.navbar-toggle.collapsed {
+    margin-right: 0;
+  }
+
   ul.nav.navbar-nav.navbar-right {
-    margin-top: 20px;
+    margin-top: 10px;
+    text-align: right;
     @media (min-width: $breakpoint-sm) {
       margin-top: 2px;
     }
