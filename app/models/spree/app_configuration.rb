@@ -25,6 +25,9 @@ module Spree
     preference :email_banner, :string, default: 'logo/TGF_logo_big_inverted.png'
     preference :customize_package_image, :string, default: 'customize.jpg'
     preference :footer_logo, :string, default: 'logo/The_Glass_Formula_Logo_Round.png'
+    preference :facebook_icon, :string, default: 'Facebook_Icon.png'
+    preference :instagram_icon, :string, default: 'Instagram_Icon.png'
+    preference :linkedin_icon, :string, default: 'LinkedIn_Icon.png'
     preference :admin_path, :string, default: '/admin'
     preference :admin_products_per_page, :integer, default: 30
     preference :allow_checkout_on_gateway_error, :boolean, default: false
