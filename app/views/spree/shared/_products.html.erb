@@ -19,7 +19,8 @@
 <% if products.any? %>
   <div id="products" class="row" data-hook>
   <% @taxonomies.each do |taxonomy| %>
-    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Mini Bar' %>
+    <!-- Bestsellers on top -->
+    <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Best' %>
       <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
     <% end %>
   <% end %>
@@ -33,37 +34,31 @@
                 <div class="panel-image-wrap">
                   <%= large_image(product, itemprop: "image") %><br/>
                 </div>
-                <!-- <br/> -->
               </div>
               <div class="panel-name-wrap">
                 <%= content_tag(:span, truncate(product.name, length: 50), class: 'panel-product-name', itemprop: "name", title: product.name) %>
-                <!-- <span class='glyphicon glyphicon-plus'></span> -->
               </div>
             <% end %>
-            <!-- <div class="panel-footer text-center"> -->
-              <!-- <span class="panel-item-info" itemprop="offers" itemscope itemtype="https://schema.org/Offer"> -->
-                <!-- <%= content_tag(:span, truncate(product.name, length: 50), class: 'info', itemprop: "name", title: product.name) %> -->
-                <!-- <br> -->
-                <!-- <span class="price selling lead" itemprop="price"><%= display_price(product) %></span> -->
-              <!-- </span> -->
-            <!-- </div> -->
+
           <% end %>
         </div>
       </div>
+      <!-- Add separator for Mini Bar Cocktails -->
+      <% if (products[index+1].try(:slug) || 'no val').include? 'goldilocks' %>
+        <div class="row product-separator">
+        </div>
+        <% @taxonomies.each do |taxonomy| %>
+          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Mini Bar' %>
+            <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
+          <% end %>
+        <% end %>
+      <% end %>
+      <!-- Add separator for party packages -->
       <% if (products[index+1].try(:slug) || 'no val').include? 'a-long-voyage' %>
         <div class="row product-separator">
         </div>
         <% @taxonomies.each do |taxonomy| %>
           <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Packages' %>
-            <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
-          <% end %>
-        <% end %>
-      <% end %>
-      <% if (products[index+1].try(:slug) || 'no val').include? 'acc' %>
-        <div class="row product-separator">
-        </div>
-        <% @taxonomies.each do |taxonomy| %>
-          <% if controller_name.include? 'shop' or controller_name.include? 'product' and taxonomy.name.include? 'Accessories' %>
             <h4 class='taxonomy-root'><%= taxonomy.name %></h4>
           <% end %>
         <% end %>
@@ -77,18 +72,12 @@
                 <div class="panel-image-wrap">
                   <%= image_tag Spree::Config[:customize_package_image], width: "500px", alt: "Customize Your Own Package", title: Spree::Store.current.name %>
                 </div>
-                <!-- <br/> -->
               </div>
               <div class="panel-name-wrap">
                 <span class="panel-product-name">Customize Your Own Package</span>
-                <!-- <span class='glyphicon glyphicon-plus'></span> -->
               </div>
             </a>
-            <!-- <div class="panel-footer text-center"> -->
-              <!-- <span class="panel-item-info" itemprop="offers" itemscope itemtype="https://schema.org/Offer"> -->
-                <!-- <br> -->
-              <!-- </span> -->
-            <!-- </div> -->
+
         </div>
       </div>
 
