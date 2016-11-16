@@ -24,6 +24,7 @@ module Spree
     preference :admin_interface_logo, :string, default: 'logo/The_Glass_Formula_Logo.png'
     preference :email_banner, :string, default: 'logo/TGF_logo_big_inverted.png'
     preference :customize_package_image, :string, default: 'customize.jpg'
+    preference :cuhk_catalog, :string, default: 'CUHK_Catalog.pdf'
     preference :footer_logo, :string, default: 'logo/The_Glass_Formula_Logo_Round.png'
     preference :facebook_icon, :string, default: 'Facebook_Icon.png'
     preference :instagram_icon, :string, default: 'Instagram_Icon.png'
