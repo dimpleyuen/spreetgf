@@ -53,7 +53,7 @@
             <span class="out-of-stock"><%= Spree.t(:out_of_stock) %></span>
           <% end %>
         </div>
-
+        <!-- check @taxon.name here to change the delivery wording -->
         <p>(Delivery included)</p>
       </div>
       <% if @product.can_supply? %>
