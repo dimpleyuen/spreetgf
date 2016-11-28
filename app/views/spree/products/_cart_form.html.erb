@@ -62,7 +62,9 @@
         <!-- <p>(Delivery included)</p> -->
       </div>
       <% if @product.name.include? "Fairy Lights Christmas" %>
-       <div style="clear: both;"><a href="http://www.facebook.com/theglassformula" target="_blank" class="btn btn-success" id="facebook-message-button">Facebook Message Us To Order</a></div>
+       <div class="add-to-cart">
+          <a href="http://www.facebook.com/theglassformula" target="_blank" class="btn btn-success" id="facebook-message-button"> Facebook Message Us To Order</a>
+        </div>
       <% elsif @product.can_supply? %>
       <div class="add-to-cart">
         <!-- <br /> -->
