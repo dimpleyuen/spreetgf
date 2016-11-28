@@ -1003,6 +1003,10 @@ en:
         instructions: "Please keep this confirmation email for your record and a sales representative will be in contact with you shortly to make sure you're all set."
         order_summary: "Order Number: %{number}"
         subject: Order Confirmation
+        payable_1: "Please make all transfer payments to the following bank account:"
+        payable_2: "Bank Name: Hang Seng Bank"
+        payable_3: "Account No: 933 080947 883"
+        payable_4: "Account Name: CREATID COMPANY LTD"
         thanks: "Thank you for ordering with The Glass Formula, until then, happy drinking!"
         signature_head: "Cheers,"
         signature_name: The Glass Formula Team
