@@ -3,7 +3,11 @@
     <% if @product.variants_and_option_values(current_currency).any? %>
       <div id="product-variants" class="col-xs-6">
         <!-- <h3 class="product-section-title"><%= Spree.t(:variants) %></h3> -->
-        <h3 class="product-section-title">Sizes:</h3>
+        <% if @taxon.name.include? 'Best' %>
+          <h3 class="product-section-title">Offers: </h3>
+        <% else %>
+          <h3 class="product-section-title">Sizes: </h3>
+        <% end %>
         <ul class="list-group">
           <% @product.variants_and_option_values(current_currency).each_with_index do |variant, index| %>
             <li>
@@ -13,7 +17,8 @@
               %>
               <%= label_tag "variant_id_#{ variant.id }" do %>
                 <span class="variant-description">
-                  <%= (variant_options variant).gsub("Serving Size: ", "") %>
+                  <%= (variant_options variant).gsub("Serving Size: ", "").gsub("Price: ", "") %>
+                  <% if (variant_options variant).include? "Early Bird" %><small>(expires on Dec 10th!)</small><% end %>
                 </span>
                 <!-- <% if variant_price variant %>
                   <span class="price diff"><%= variant_price variant %></span>
@@ -54,9 +59,11 @@
           <% end %>
         </div>
         <!-- check @taxon.name here to change the delivery wording -->
-        <p>(Delivery included)</p>
+        <!-- <p>(Delivery included)</p> -->
       </div>
-      <% if @product.can_supply? %>
+      <% if @product.name.include? "Fairy Lights Christmas" %>
+       <div style="clear: both;"><a href="http://www.facebook.com/theglassformula" target="_blank" class="btn btn-success" id="facebook-message-button">Facebook Message Us To Order</a></div>
+      <% elsif @product.can_supply? %>
       <div class="add-to-cart">
         <!-- <br /> -->
         <!-- <div class="input-group"> -->
