@@ -46,6 +46,25 @@
           <% end %>
         </div>
       </div>
+
+      <!-- Add customize at the end of Bestsellers -->
+      <% if products[index].try(:taxons).try(:first).try(:name) == 'Bestsellers' && (products[index+1].try(:taxons).try(:first).try(:name) || 'no val') != 'Bestsellers' %>
+        <div id="customize" class="col-md-4 col-sm-6 col-xs-6 product-list-item" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
+          <div class="panel panel-default">
+              <a href="/customize" id="product-icon">
+                <div class="panel-body text-center product-body">
+                  <div class="panel-image-wrap">
+                    <%= image_tag Spree::Config[:customize_package_image], width: "500px", alt: "Customize Your Own Package", title: Spree::Store.current.name %>
+                  </div>
+                </div>
+                <div class="panel-name-wrap">
+                  <span class="panel-product-name">Customize Your Own Package</span>
+                </div>
+              </a>
+          </div>
+        </div>
+      <% end %>
+
       <!-- Add separator for Mini Bar Cocktails -->
       <% if (products[index+1].try(:slug) || 'no val').include? 'goldilocks' %>
         <div class="row product-separator">
@@ -67,22 +86,6 @@
         <% end %>
       <% end %>
     <% end %>
-
-    <div id="customize" class="col-md-4 col-sm-6 col-xs-6 product-list-item" data-hook="products_list_item" itemscope itemtype="https://schema.org/Product">
-        <div class="panel panel-default">
-            <a href="/customize" id="product-icon">
-              <div class="panel-body text-center product-body">
-                <div class="panel-image-wrap">
-                  <%= image_tag Spree::Config[:customize_package_image], width: "500px", alt: "Customize Your Own Package", title: Spree::Store.current.name %>
-                </div>
-              </div>
-              <div class="panel-name-wrap">
-                <span class="panel-product-name">Customize Your Own Package</span>
-              </div>
-            </a>
-
-        </div>
-      </div>
 
     <% reset_cycle("classes") %>
   </div>
