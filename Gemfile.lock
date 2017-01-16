@@ -6,6 +6,15 @@ GIT
     spree_mail_settings (3.1.0)
       spree_backend (~> 3.1.0.beta)
 
+GIT
+  remote: git://github.com/spree-contrib/spree_sitemap.git
+  revision: 7d0941cfed1ac54b25d30d13a1f8e5949170a399
+  branch: 3-1-stable
+  specs:
+    spree_sitemap (3.1.0)
+      sitemap_generator (~> 5.1.0)
+      spree_core (~> 3.1.0.beta)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -233,6 +242,8 @@ GEM
       rdoc (~> 4.0)
     select2-rails (3.5.9.1)
       thor (~> 0.14)
+    sitemap_generator (5.1.0)
+      builder
     sixarm_ruby_unaccent (1.1.1)
     spree (3.1.0)
       spree_api (= 3.1.0)
@@ -354,6 +365,7 @@ DEPENDENCIES
   spree_auth_devise (~> 3.1.0)
   spree_gateway (~> 3.1.0)
   spree_mail_settings!
+  spree_sitemap!
   spring
   turbolinks
   uglifier (>= 1.3.0)

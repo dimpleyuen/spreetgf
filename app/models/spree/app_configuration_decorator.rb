@@ -8,12 +8,12 @@ module Spree
 
     # Default smtp settings
     preference :mail_host, :string, default: 'theglassformula'
-    preference :mail_domain, :string, default: 'smtpout.asia.secureserver.net'
+    preference :mail_domain, :string, default: 'smtp.gmail.com'
     preference :mail_port, :integer, default: 25
     preference :secure_connection_type, :string, default: Core::MailSettings::SECURE_CONNECTION_TYPES[0]
     preference :mail_auth_type, :string, default: Core::MailSettings::MAIL_AUTH[1]
     preference :smtp_username, :string, default: 'info@theglassformula.com'
-    preference :smtp_password, :string, default: '123123123'
+    preference :smtp_password, :string, default: ''
 
     def override_actionmailer_config
       raise 'override_actionmailer_config has been removed. ' \

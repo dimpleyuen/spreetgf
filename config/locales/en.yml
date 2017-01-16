@@ -999,12 +999,14 @@ en:
         subject: Cancellation of Order
       confirm_email:
         dear_customer: "Hooray!"
-        blurb_1: "We've successfully received your drinks order. According to our philosophy, "
-        philosophy: "a great story always starts with a drink (or two)..."
-        blurb_2: " so get ready for some fun!"
+        blurb_1: "We have successfully received your order."
         instructions: "Please keep this confirmation email for your record and a sales representative will be in contact with you shortly to make sure you're all set."
         order_summary: "Order Number: %{number}"
         subject: Order Confirmation
+        payable_1: "Please make all transfer payments to the following bank account:"
+        payable_2: "Bank Name: Hang Seng Bank"
+        payable_3: "Account No: 933 080947 883"
+        payable_4: "Account Name: CREATID COMPANY LTD"
         thanks: "Thank you for ordering with The Glass Formula, until then, happy drinking!"
         signature_head: "Cheers,"
         signature_name: The Glass Formula Team
@@ -1411,7 +1413,7 @@ en:
       unable_to_find_for_action: "Could not find store credit for auth code: %{auth_code} for action: %{action}"
       user_has_no_store_credits: "User does not have any available store credit"
       select_one_store_credit: "Select store credit to go towards remaining balance"
-    street_address: Street Address
+    street_address: Street Address (English)
     street_address_2: Street Address (cont'd)
     subtotal: Subtotal
     subtract: Subtract

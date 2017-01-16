@@ -5,11 +5,13 @@
         <%= Spree.t('order_mailer.confirm_email.dear_customer') %>
       </p>
       <p>
-        <%= Spree.t('order_mailer.confirm_email.blurb_1') %><strong><%= Spree.t('order_mailer.confirm_email.philosophy') %></strong><%= Spree.t('order_mailer.confirm_email.blurb_2') %>
+        <%= Spree.t('order_mailer.confirm_email.blurb_1') %>
       </p>
       <p>
         <%= Spree.t('order_mailer.confirm_email.instructions') %>
       </p>
+      <br>
+      <br>
       <p>
         <%= Spree.t('order_mailer.confirm_email.order_summary', number: @order.number) %>
       </p>
@@ -36,13 +38,18 @@
               <% @order.shipments.group_by { |s| s.selected_shipping_rate.try(:name) }.each do |name, shipments| %>
                 <tr>
                   <td class="six sub-columns">
-                    <%= Spree.t(:shipping) %> <%= name %>:
+                    <%= Spree.t(:shipping) %> <%= name %> (<%= @order.delivery_datetime.strftime('%d %B %Y') %>):
                   </td>
                   <td class="six sub-columns last right">
                     <%= Spree::Money.new(shipments.sum(&:discounted_cost), currency: @order.currency) %>
                   </td>
                 </tr>
               <% end %>
+              <tr>
+                <td class="six sub-columns" colspan="2">
+                  Shipping Instructions: <%= @order.special_instructions %>
+                </td>
+              </tr>
               <% if @order.all_adjustments.eligible.tax.exists? %>
                 <% @order.all_adjustments.eligible.tax.group_by(&:label).each do |label, adjustments| %>
                   <tr>
@@ -64,6 +71,14 @@
           </td>
         </tr>
       </table>
+      <br>
+      <br>
+      <p>
+        <span style="display: block"><%= Spree.t('order_mailer.confirm_email.payable_1') %></span>
+        <span style="display: block"><%= Spree.t('order_mailer.confirm_email.payable_2') %></span>
+        <span style="display: block"><%= Spree.t('order_mailer.confirm_email.payable_3') %></span>
+        <span style="display: block"><%= Spree.t('order_mailer.confirm_email.payable_4') %></span>
+      </p>
       <p>
         <%= Spree.t('order_mailer.confirm_email.thanks') %>
       </p>

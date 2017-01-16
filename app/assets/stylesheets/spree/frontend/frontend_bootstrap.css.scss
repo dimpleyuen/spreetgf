@@ -27,7 +27,10 @@ $font-size-base: 16px;
 
   #header {
     background: rgba($white, 0.7);
-    padding: $line-height-computed 0;
+    padding: 20px 0 10px;
+    @media (min-width: $breakpoint-sm) {
+      padding: $line-height-computed 0;
+    }
   }
 
   #logo {
@@ -49,8 +52,20 @@ $font-size-base: 16px;
     margin-bottom: 0;
   }
 
+  .navbar-brand {
+    padding-left: 0;
+    @media (min-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  button.navbar-toggle.collapsed {
+    margin-right: 0;
+  }
+
   ul.nav.navbar-nav.navbar-right {
-    margin-top: 20px;
+    margin-top: 10px;
+    text-align: right;
     @media (min-width: $breakpoint-sm) {
       margin-top: 2px;
     }
@@ -76,13 +91,44 @@ $font-size-base: 16px;
 #spree-footer {
   background: $gray-dark;
   padding-top: $padding-base-horizontal;
+  padding-bottom: $padding-base-horizontal;
   margin-top: $line-height-computed;
   color: white;
+  font-size: 10px !important;
+  span {
+    font-size: 12px !important;
+    &.links {
+      cursor: pointer;
+    }
+    &.address {
+      font-size: 14px !important;
+    }
+  }
+}
+
+img.logo-footer {
+  width: 80px;
+  margin: 10px;
+  @media (min-width: $breakpoint-sm) {
+    width: 100px;
+  }
+}
+
+img.social-media-icons {
+  width: 40px;
+  padding: 0 3px;
 }
 
 // -- How We Work Page ----------------------------------
+.main-heading {
+  font-size: 26px;
+  @media (min-width: 450px) {
+    font-size: 30px;
+  }
+}
+
 .how-we-work-blurb {
-  font-size: $font-size-base;
+  font-size: 17px;
   font-family: $font-family-sans-serif-light;
   font-weight: 300;
 }
@@ -116,24 +162,88 @@ $font-size-base: 16px;
     }
 
     .glyphicon {
-      border: 5px dashed $brand-red-strong;
+      border: 3px dotted $brand-red-strong;
       border-radius: 90px;
       color: $brand-red-strong;
       font-size: 60px;
       padding: 35px;
-      transition: transform 0.7s;
-      -webkit-transition: -webkit-transform 0.7s;
-      -webkit-transform: rotateY(0deg);
-      transform: rotateY(0deg);
       &:hover {
-        -webkit-transform: rotateY(-180deg);
-        transform: rotateY(-180deg);
+        -webkit-animation: pulse2 0.85s linear infinite;
+        -moz-animation: pulse2 0.85s linear infinite;
+        -ms-animation: pulse2 0.85s linear infinite;
+        animation: pulse2 0.7s linear infinite;
+        @keyframes "pulse2" {
+         0% {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+         }
+         50% {
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+            transform: scale(0.8);
+         }
+         100% {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+         }
+
+        }
+
+        @-moz-keyframes pulse2 {
+         0% {
+           -moz-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -moz-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -moz-transform: scale(1);
+           transform: scale(1);
+         }
+
+        }
+
+        @-webkit-keyframes "pulse2" {
+         0% {
+           -webkit-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -webkit-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -webkit-transform: scale(1);
+           transform: scale(1);
+         }
+
+        }
+
+        @-ms-keyframes "pulse2" {
+         0% {
+           -ms-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -ms-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -ms-transform: scale(1);
+           transform: scale(1);
+         }
+        }
       }
-      // background-color: #fef5e9;
-      // &:hover {
-      //   color: $brand-red-light;
-      //   border: 5px dashed $brand-red-light;
-      // }
       @media (min-width: $breakpoint-sm) {
         font-size: 55px;
         padding: 35px;
@@ -182,24 +292,48 @@ $font-size-base: 16px;
   justify-content: center;
 
   .quote {
+    width: 100%;
     background-color: rgba(255,255,255,0.6);
-    padding: 60px 0;
-    font-size: 30px;
-    align-self: stretch;
-    text-transform: uppercase;
+    padding: 40px 0;
+    .quote-text {
+      font-size: 26px;
+      align-self: stretch;
+      text-transform: uppercase;
+      @media (min-width: 450px) {
+        font-size: 30px;
+        margin: 20px;
+      }
+      #break {
+        @media (min-width: 625px) {
+          display: block;
+        }
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+    }
+    #company-name {
+      text-transform: uppercase;
+    }
   }
 
-  .quote:before {
+  .quote-text:before {
     content: open-quote;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 45px;
     color: #f1b242;
-}
-  .quote:after {
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
+  }
+  .quote-text:after {
     content: close-quote;
     font-weight: bold;
-    font-size: 80px;
+    font-size: 45px;
     color: #f1b242;
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
   }
 }
 
@@ -214,11 +348,37 @@ $font-size-base: 16px;
 
 .product-show-image {
   img {
-    width: 60%;
+    width: 90%;
     height: 100%;
+    @media (min-width: 500px)  {
+      width: 65%;
+    }
     @media (min-width: $breakpoint-sm) {
       width: 100%;
     }
+  }
+}
+
+li.tmb-all {
+  padding-right: 3px;
+}
+
+#thumbnails, #product-properties {
+  margin: 0 auto;
+  width: 90%;
+  margin-bottom: 20px;
+  @media (min-width: 500px)  {
+    width: 65%;
+  }
+  @media (min-width: $breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+#thumbnails {
+  text-align: center;
+  @media (min-width: $breakpoint-sm) {
+    text-align: left;
   }
 }
 
@@ -235,6 +395,16 @@ $font-size-base: 16px;
   box-shadow: none;
   font-family: 'Lato';
   font-weight: 300;
+  margin-bottom: 0;
+}
+
+.product-blurb {
+  @media (max-width: ($breakpoint-sm - 1)) {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 0;
+  }
 }
 
 #product-variants ul li {
@@ -253,13 +423,19 @@ $font-size-base: 16px;
   }
 }
 
-.back-to-menu a {
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
+.back-to-menu {
+  display: none;
+  @media (min-width: $breakpoint-sm) {
+    display: block;
+  }
 }
 
 .add-to-cart {
+  clear: both;
+  margin: 0 auto;
+  @media (min-width: $breakpoint-sm) {
+    margin-left: 15px;
+  }
   #quantity {
     display: none;
   }
@@ -275,6 +451,63 @@ $font-size-base: 16px;
 
 .tmb-all .thumbnail {
   padding: 0;
+}
+
+button#add-to-cart-button, a#facebook-message-button {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+}
+
+#show-table, #hide-table {
+  font-style: italic;
+  text-decoration: underline;
+  color: $brand-primary;
+  font-size: 14px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  @media (min-width: $breakpoint-sm) {
+    display: inline;
+    margin-top: 0;
+  }
+}
+
+#product-description {
+  .table-responsive {
+    display: none;
+    .note {
+      color: $brand-primary;
+    }
+  }
+
+  #size-chart {
+    thead {
+      font-weight: normal;
+      background-color: lightgray;
+    }
+    td {
+      padding: 5 10px;
+      // border: 1px solid lightgray;
+      &.item {
+        min-width: 220px;
+        vertical-align: middle;
+        u {
+          padding-left: 20px;
+        }
+      }
+      &.size {
+        min-width: 100px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
 }
 
 // -- Shopping Cart Page --------------------------------
@@ -297,6 +530,34 @@ $font-size-base: 16px;
 
   .cart-item-quantity .line_item_quantity {
     min-width: 50px;
+  }
+}
+
+.cart-item-total-header {
+  min-width: 120px;
+}
+
+#cart_adjustments td h5 {
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: $font-size-base;
+}
+
+button#update-button {
+  background: transparent;
+  color: $brand-primary;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+button#checkout-link {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
   }
 }
 
@@ -400,6 +661,24 @@ ul.shipping-methods {
 .coupon-code-input {
   font-family: 'Lato';
   font-weight: 300;
+}
+
+input.btn.btn-lg.btn-success.btn-block {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+input.btn.btn-lg.btn-success {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
 }
 
 // -- Confirmation Page ---------------------------------

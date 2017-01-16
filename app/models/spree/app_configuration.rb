@@ -21,9 +21,17 @@ module Spree
   class AppConfiguration < Preferences::Configuration
     # Alphabetized to more easily lookup particular preferences
     preference :address_requires_state, :boolean, default: true # should state/state_name be required
-    preference :admin_interface_logo, :string, default: 'logo/TGF_logo_big.png'
+    preference :admin_interface_logo, :string, default: 'logo/The_Glass_Formula_Logo.png'
+    preference :email_banner, :string, default: 'logo/TGF_logo_big_inverted.png'
+    preference :customize_package_image, :string, default: 'customize.jpg'
+    preference :cuhk_catalog, :string, default: 'CUHK_Catalog.pdf'
+    preference :brand_profile, :string, default: 'brandprofile.pdf'
+    preference :footer_logo, :string, default: 'logo/The_Glass_Formula_Logo_Round.png'
+    preference :facebook_icon, :string, default: 'Facebook_Icon.png'
+    preference :instagram_icon, :string, default: 'Instagram_Icon.png'
+    preference :linkedin_icon, :string, default: 'LinkedIn_Icon.png'
     preference :admin_path, :string, default: '/admin'
-    preference :admin_products_per_page, :integer, default: 10
+    preference :admin_products_per_page, :integer, default: 30
     preference :allow_checkout_on_gateway_error, :boolean, default: false
     preference :allow_guest_checkout, :boolean, default: true
     preference :alternative_shipping_phone, :boolean, default: false # Request extra phone for ship addr
@@ -39,7 +47,7 @@ module Spree
     preference :expedited_exchanges, :boolean, default: false # NOTE this requires payment profiles to be supported on your gateway of choice as well as a delayed job handler to be configured with activejob. kicks off an exchange shipment upon return authorization save. charge customer if they do not return items within timely manner.
     preference :expedited_exchanges_days_window, :integer, default: 14 # the amount of days the customer has to return their item after the expedited exchange is shipped in order to avoid being charged
     preference :layout, :string, default: 'spree/layouts/spree_application'
-    preference :logo, :string, default: 'logo/TGF_logo_big.png'
+    preference :logo, :string, default: 'logo/The_Glass_Formula_Logo.png'
     preference :max_level_in_taxons_menu, :integer, default: 1 # maximum nesting level in taxons menu
     preference :orders_per_page, :integer, default: 15
     preference :properties_per_page, :integer, default: 15

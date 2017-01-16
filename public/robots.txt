@@ -11,3 +11,4 @@ Disallow: /user
 Disallow: /account
 Disallow: /api
 Disallow: /password
+Sitemap: http://www.theglassformula.com/sitemap.xml.gz
