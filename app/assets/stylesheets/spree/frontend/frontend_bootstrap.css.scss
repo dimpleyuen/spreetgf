@@ -1,0 +1,771 @@
+//Add your custom bootstrap variables here, see https://github.com/twbs/bootstrap-sass/blob/master/assets/stylesheets/bootstrap/_variables.scss for full list of variables.
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+@import "variables";
+@import "../../bootstrap/_variables.scss";
+@import "../../bootstrap/_grid.scss";
+@import "../../bootstrap/_list-group.scss";
+@import "../../bootstrap/_navbar.scss";
+@import "../../bootstrap/_navs.scss";
+@import "../../bootstrap/_normalize.scss";
+@import "../../bootstrap/_panels.scss";
+@import "../../bootstrap/_scaffolding.scss";
+$font-size-base: 16px;
+
+// -- Spree Custom Header and Footer ---------------------
+#spree-header {
+  background: #FFFFFF asset-url('background.jpg') center center;
+  min-height: 300px;
+  height: 500px; /* fallback */
+  height: 50vh;
+  background-size: cover;
+  margin-bottom: $line-height-computed;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  #header {
+    background: rgba($white, 0.7);
+    padding: 20px 0 10px;
+    @media (min-width: $breakpoint-sm) {
+      padding: $line-height-computed 0;
+    }
+  }
+
+  #logo {
+    img {
+      width: 100%;
+    }
+  }
+
+  .nav a {
+    color: $gray;
+
+    &:hover, &:focus {
+      color: $gray-darker;
+    }
+  }
+
+  .navbar {
+    border: 0;
+    margin-bottom: 0;
+  }
+
+  .navbar-brand {
+    padding-left: 0;
+    @media (min-width: $breakpoint-sm) {
+      display: none;
+    }
+  }
+
+  button.navbar-toggle.collapsed {
+    margin-right: 0;
+  }
+
+  ul.nav.navbar-nav.navbar-right {
+    margin-top: 10px;
+    text-align: right;
+    @media (min-width: $breakpoint-sm) {
+      margin-top: 2px;
+    }
+    li {
+      display: inline-block;
+      font-size: $font-size-base;
+      text-transform: uppercase;
+      &#link-to-cart {
+        float: right;
+      }
+      a {
+        display: inline-block;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+
+#spree-footer {
+  background: $gray-dark;
+  padding-top: $padding-base-horizontal;
+  padding-bottom: $padding-base-horizontal;
+  margin-top: $line-height-computed;
+  color: white;
+  font-size: 10px !important;
+  span {
+    font-size: 12px !important;
+    &.links {
+      cursor: pointer;
+    }
+    &.address {
+      font-size: 14px !important;
+    }
+  }
+}
+
+img.logo-footer {
+  width: 80px;
+  margin: 10px;
+  @media (min-width: $breakpoint-sm) {
+    width: 100px;
+  }
+}
+
+img.social-media-icons {
+  width: 40px;
+  padding: 0 3px;
+}
+
+// -- How We Work Page ----------------------------------
+.main-heading {
+  font-size: 26px;
+  @media (min-width: 450px) {
+    font-size: 30px;
+  }
+}
+
+.how-we-work-blurb {
+  font-size: 17px;
+  font-family: $font-family-sans-serif-light;
+  font-weight: 300;
+}
+
+.icon-blurb {
+  font-family: $font-family-sans-serif-light;
+  font-weight: 300;
+}
+
+.how-we-work {
+  margin: 30px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (min-width: $breakpoint-sm) {
+    flex-direction:row;
+    margin: 50px 0;
+  }
+
+
+  .how-we-work-icons {
+    flex-direction:row;
+    margin-bottom: 25px;
+    @media (min-width: $breakpoint-sm) {
+      padding: 0 15px;
+      margin-bottom: 0;
+    }
+    @media (min-width: $breakpoint-md) {
+      padding: 0 50px;
+    }
+
+    .glyphicon {
+      border: 3px dotted $brand-red-strong;
+      border-radius: 90px;
+      color: $brand-red-strong;
+      font-size: 60px;
+      padding: 35px;
+      &:hover {
+        -webkit-animation: pulse2 0.85s linear infinite;
+        -moz-animation: pulse2 0.85s linear infinite;
+        -ms-animation: pulse2 0.85s linear infinite;
+        animation: pulse2 0.7s linear infinite;
+        @keyframes "pulse2" {
+         0% {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+         }
+         50% {
+            -webkit-transform: scale(0.8);
+            -moz-transform: scale(0.8);
+            -o-transform: scale(0.8);
+            -ms-transform: scale(0.8);
+            transform: scale(0.8);
+         }
+         100% {
+            -webkit-transform: scale(1);
+            -moz-transform: scale(1);
+            -o-transform: scale(1);
+            -ms-transform: scale(1);
+            transform: scale(1);
+         }
+
+        }
+
+        @-moz-keyframes pulse2 {
+         0% {
+           -moz-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -moz-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -moz-transform: scale(1);
+           transform: scale(1);
+         }
+
+        }
+
+        @-webkit-keyframes "pulse2" {
+         0% {
+           -webkit-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -webkit-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -webkit-transform: scale(1);
+           transform: scale(1);
+         }
+
+        }
+
+        @-ms-keyframes "pulse2" {
+         0% {
+           -ms-transform: scale(1.1);
+           transform: scale(1.1);
+         }
+         50% {
+           -ms-transform: scale(0.8);
+           transform: scale(0.8);
+         }
+         100% {
+           -ms-transform: scale(1);
+           transform: scale(1);
+         }
+        }
+      }
+      @media (min-width: $breakpoint-sm) {
+        font-size: 55px;
+        padding: 35px;
+      }
+      @media (min-width: $breakpoint-md) {
+        font-size: 80px;
+        padding: 45px;
+      }
+    }
+  }
+}
+
+.call-to-action {
+  text-align: center;
+  margin-bottom: 50px;
+  .btn {
+    width: 300px;
+  }
+}
+
+
+// Products Page Taxonomy Headings -----------------------
+[id^=product] {
+  .taxonomy-root {
+    padding-left: 15px;
+  }
+}
+
+.product-separator {
+  margin: 0;
+}
+
+
+// -- Image Divider -------------------------------------
+.image-drinks {
+  background: #FFFFFF asset-url('drinks.jpg') center center;
+  min-height: 300px;
+  height: 500px; /* fallback */
+  height: 50vh;
+  background-size: cover;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+
+  .quote {
+    width: 100%;
+    background-color: rgba(255,255,255,0.6);
+    padding: 40px 0;
+    .quote-text {
+      font-size: 26px;
+      align-self: stretch;
+      text-transform: uppercase;
+      @media (min-width: 450px) {
+        font-size: 30px;
+        margin: 20px;
+      }
+      #break {
+        @media (min-width: 625px) {
+          display: block;
+        }
+        @media (min-width: 768px) {
+          display: none;
+        }
+      }
+    }
+    #company-name {
+      text-transform: uppercase;
+    }
+  }
+
+  .quote-text:before {
+    content: open-quote;
+    font-weight: bold;
+    font-size: 45px;
+    color: #f1b242;
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
+  }
+  .quote-text:after {
+    content: close-quote;
+    font-weight: bold;
+    font-size: 45px;
+    color: #f1b242;
+    @media (min-width: 450px) {
+      font-size: 80px;
+    }
+  }
+}
+
+// -- Product Show Page ---------------------------------
+#main-image {
+  border: none;
+  box-shadow: none;
+  .panel-body {
+    padding: 0;
+  }
+}
+
+.product-show-image {
+  img {
+    width: 90%;
+    height: 100%;
+    @media (min-width: 500px)  {
+      width: 65%;
+    }
+    @media (min-width: $breakpoint-sm) {
+      width: 100%;
+    }
+  }
+}
+
+li.tmb-all {
+  padding-right: 3px;
+}
+
+#thumbnails, #product-properties {
+  margin: 0 auto;
+  width: 90%;
+  margin-bottom: 20px;
+  @media (min-width: 500px)  {
+    width: 65%;
+  }
+  @media (min-width: $breakpoint-sm) {
+    width: 100%;
+  }
+}
+
+#thumbnails {
+  text-align: center;
+  @media (min-width: $breakpoint-sm) {
+    text-align: left;
+  }
+}
+
+#product-properties tbody tr td:last-of-type {
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+.well {
+  padding: 0px;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  font-family: 'Lato';
+  font-weight: 300;
+  margin-bottom: 0;
+}
+
+.product-blurb {
+  @media (max-width: ($breakpoint-sm - 1)) {
+    background: #f1f1f1;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 0;
+  }
+}
+
+#product-variants ul li {
+  list-style-type: none;
+  display: flex;
+  align-items: baseline;
+  input {
+    margin: 0;
+  }
+  label {
+    font-size: 18px;
+    font-family: 'Lato';
+    font-weight: 300;
+    cursor: pointer;
+    margin: 3px 5px;
+  }
+}
+
+.back-to-menu {
+  display: none;
+  @media (min-width: $breakpoint-sm) {
+    display: block;
+  }
+}
+
+.add-to-cart {
+  clear: both;
+  margin: 0 auto;
+  @media (min-width: $breakpoint-sm) {
+    margin-left: 15px;
+  }
+  #quantity {
+    display: none;
+  }
+  text-align: center;
+  @media(min-width: $breakpoint-sm) {
+    text-align: left;
+  }
+  button {
+    margin-top: 20px;
+    width: 300px;
+  }
+}
+
+.tmb-all .thumbnail {
+  padding: 0;
+}
+
+button#add-to-cart-button, a#facebook-message-button {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+}
+
+#show-table, #hide-table {
+  font-style: italic;
+  text-decoration: underline;
+  color: $brand-primary;
+  font-size: 14px;
+  cursor: pointer;
+  display: block;
+  margin-top: 5px;
+  @media (min-width: $breakpoint-sm) {
+    display: inline;
+    margin-top: 0;
+  }
+}
+
+#product-description {
+  .table-responsive {
+    display: none;
+    .note {
+      color: $brand-primary;
+    }
+  }
+
+  #size-chart {
+    thead {
+      font-weight: normal;
+      background-color: lightgray;
+    }
+    td {
+      padding: 5 10px;
+      // border: 1px solid lightgray;
+      &.item {
+        min-width: 220px;
+        vertical-align: middle;
+        u {
+          padding-left: 20px;
+        }
+      }
+      &.size {
+        min-width: 100px;
+        text-align: center;
+        vertical-align: middle;
+      }
+    }
+  }
+}
+
+// -- Shopping Cart Page --------------------------------
+#update-cart {
+  thead {
+    text-transform: uppercase;
+  }
+  .cart-item-description {
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+  .cart-item-price, .cart-item-total {
+    color: $text-color;
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+  .cart-item-image {
+    width: 125px;
+  }
+
+  .cart-item-quantity .line_item_quantity {
+    min-width: 50px;
+  }
+}
+
+.cart-item-total-header {
+  min-width: 120px;
+}
+
+#cart_adjustments td h5 {
+  font-family: 'Lato';
+  font-weight: 300;
+  font-size: $font-size-base;
+}
+
+button#update-button {
+  background: transparent;
+  color: $brand-primary;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+button#checkout-link {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+// -- Checkout / Registration Page ----------------------
+#checkout_form_registration {
+  padding: 15px 10px;
+}
+
+ul#checkout-step-address li, ul#checkout-step-delivery li {
+  cursor: default;
+  &.active {
+    border: 1px solid $link-color;
+    border-radius: 3px;
+  }
+
+  a {
+    background-color: transparent;
+    color: $link-color;
+  }
+}
+
+.checkout-address-email {
+  margin: 0;
+  padding: 10px;
+}
+
+.inner {
+  padding: 10px;
+}
+
+label#use_billing {
+  margin-left: 10px;
+}
+
+#methods {
+  padding: 15px 10px;
+
+  .stock-contents thead {
+    border-top: 2px solid #dddddd;
+  }
+
+  .stock-item {
+    .item-name {
+      font-family: 'Lato';
+      font-weight: 300;
+    }
+  }
+}
+
+ul.shipping-methods {
+  margin: 0;
+
+  .shipping-method {
+    padding: 0;
+    padding-left: 10px;
+
+    label {
+      margin: 0;
+      input, span {
+        margin: 0;
+        vertical-align: middle
+      }
+      .rate-name {
+        font-family: 'Lato';
+        font-weight: 300;
+        padding: 0 5px;
+      }
+    }
+  }
+}
+
+.payment-information {
+  padding: 15px 10px;
+  ul {
+    margin-bottom: 15px;
+    li {
+      padding: 0;
+      label {
+        margin: 0;
+        input {
+          margin: 0;
+          vertical-align: middle;
+        }
+        span {
+          vertical-align: middle;
+          font-family: 'Lato';
+          font-weight: 300;
+          padding-left: 5px;
+        }
+      }
+    }
+  }
+}
+
+.coupon-code-label {
+  font-weight: 500;
+  margin-bottom: 5px;
+  margin-left: 3px;
+}
+
+.coupon-code-input {
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+input.btn.btn-lg.btn-success.btn-block {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+input.btn.btn-lg.btn-success {
+  background: transparent;
+  color: $brand-success;
+  font-weight: 300;
+  &:focus {
+    outline: none;
+  }
+}
+
+// -- Confirmation Page ---------------------------------
+.thank-you-blurb, .summary-order-block {
+  font-family: 'Lato';
+  font-weight: 300
+}
+
+table#line-items {
+  thead { text-transform: uppercase; }
+  .order-summary-item-description {
+    font-family: 'Lato';
+    font-weight: 300;
+  }
+}
+
+// -- Empty Cart ----------------------------------------
+.alert-empty-cart {
+  background-color: $gray-lightest;
+  border-color: 1px solid $gray-darker;
+  font-family: 'Lato';
+  font-weight: 300;
+}
+
+// -- Spree Layout Custom Rules -------------------------
+
+.alert-notice { @extend .alert-success; }
+.alert-error, .alert-registration_error { @extend .alert-danger; }
+.alert-alert { @extend .alert-info; }
+
+.product-body {
+  padding: 0;
+  max-height: 357px;
+  @media (min-width: $breakpoint-sm) {
+    height: 279px;
+  }
+  @media (min-width: $breakpoint-md) {
+    height: 290px;
+  }
+  @media (min-width: $breakpoint-lg) {
+    height: 311px !important;
+  }
+}
+
+.progress-steps {
+  margin-top: $line-height-computed;
+}
+
+h1 {
+  margin-bottom: 30px;
+}
+
+// Center cart line items
+table {
+  &.table > tbody > tr {
+    &.line-item td, &.stock-item td {
+      vertical-align: middle;
+    }
+  }
+
+  &#line-items {
+    > tbody, > tfoot {
+      > tr > td {
+        vertical-align: middle;
+
+        &.order-qty {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
+
+// Footer links
+// #footer-left a {
+  // color: lighten($brand-primary, 20);
+
+  // &:hover {
+    // color: lighten($brand-primary, 10);
+  // }
+// }
+
+// Updated credit-card image
+#credit-card-image {
+  margin-top: -10px;
+}
+
+.existing-credit-card-list td {
+  padding: 5px;
+}

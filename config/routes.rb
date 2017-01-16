@@ -11,6 +11,13 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
+  Spree::Core::Engine.add_routes do
+    get '/shop',        to: 'shop#index'
+    get '/terms',       to: 'terms#index'
+    get '/customize',   to: 'customize#index'
+
+    put '/contact',     to: 'contact#deliver_contact_email'
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

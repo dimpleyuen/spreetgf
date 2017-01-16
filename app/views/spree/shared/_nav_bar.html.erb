@@ -1,0 +1,52 @@
+<!-- <nav class="navbar col-md-8 col-sm-9" id="top-nav-bar"> -->
+  <!-- <ul id="nav-bar" class="nav navbar-nav navbar-right" data-hook> -->
+    <!-- <li id="search-bar" data-hook> -->
+      <!-- <%= render :partial => 'spree/shared/search' %> -->
+    <!-- </li> -->
+  <!-- </ul> -->
+<!-- </nav> -->
+<div class="col-md-8 col-sm-8">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">HOME</a>
+      </div>
+
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= link_to Spree.t(:menu), spree.shop_path %></li>
+          <li><a href="/t/bestsellers">Bestsellers</li>
+          <li id="link-to-cart" class="link-to-cart" data-hook>
+            <noscript>
+              <%= link_to Spree.t(:cart), '/cart' %>
+            </noscript>
+            &nbsp;
+          </li>
+          <script>Spree.fetch_cart()</script>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- <ul class="nav navbar-nav navbar-right" data-hook>
+    <li id="link-to-shop" class="link-to-shop" data-hook>
+      <%= link_to Spree.t(:menu), spree.shop_path %>
+    </li>
+
+    <li id="link-to-cart" class="link-to-cart" data-hook>
+      <noscript>
+        <%= link_to Spree.t(:cart), '/cart' %>
+      </noscript>
+      &nbsp;
+    </li>
+    <script>Spree.fetch_cart()</script>
+  </ul> -->
+</div>
+<!-- </nav> -->

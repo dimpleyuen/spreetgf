@@ -1,0 +1,1202 @@
+<div class="panel panel-default" id='shipping_method' data-hook>
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= Spree.t(:delivery) %> Method</h3>
+  </div>
+  <div class="panel-body" data-hook="shipping_method_inner">
+    <div id="methods">
+      <%= form.fields_for :shipments do |ship_form| %>
+        <div class="shipment">
+          <table class="table stock-contents" data-hook="stock-contents">
+            <colgroup>
+              <col style="width: 10%;" />
+              <col style="width: 60%;" />
+              <col style="width: 10%;" />
+              <col style="width: 20%;" />
+            </colgroup>
+            <thead>
+              <tr class="active">
+                <th></th>
+                <th align='left'><%= Spree.t(:item) %></th>
+                <th><%= Spree.t(:qty) %></th>
+                <th><%= Spree.t(:price) %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% ship_form.object.manifest.each do |item| %>
+                <tr class="stock-item">
+                  <td class="item-image"><%= mini_image(item.variant) %></td>
+                  <td class="item-name"><%= item.variant.name %></td>
+                  <td class="item-qty"><%= item.quantity %></td>
+                  <td class="item-price"><%= display_price(item.variant) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+
+          <!-- <h4 class="stock-shipping-method-title"><%= Spree.t(:shipping_method) %></h4> -->
+          <ul class="list-group shipping-methods">
+            <% ship_form.object.shipping_rates.each do |rate| %>
+              <li class="list-group-item shipping-method">
+                <label>
+                  <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
+                  <span class="rate-name"><%= rate.name %></span>
+                  <span class="badge rate-cost"><%= rate.display_cost %></span>
+                </label>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% if @differentiator.try(:missing?) %>
+        <div class="shipment unshippable">
+          <h3 class="stock-location" data-hook="stock-location">
+            <%= Spree.t(:unshippable_items) %>
+          </h3>
+          <table class="table stock-contents" data-hook="stock-missing">
+            <colgroup>
+              <col style="width: 10%;" />
+              <col style="width: 60%;" />
+              <col style="width: 10%;" />
+              <col style="width: 20%;" />
+            </colgroup>
+            <thead>
+              <th></th>
+              <th align='left'><%= Spree.t(:item) %></th>
+              <th><%= Spree.t(:qty) %></th>
+              <th><%= Spree.t(:price) %></th>
+            </thead>
+            <tbody>
+              <% @differentiator.missing.each do |variant, quantity| %>
+                <tr class="stock-item">
+                  <td class="item-image"><%= mini_image(variant) %></td>
+                  <td class="item-name"><%= variant.name %></td>
+                  <td class="item-qty"><%= quantity %></td>
+                  <td class="item-price"><%= display_price(variant) %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% end %>
+      <br>
+      <%= form.text_field :delivery_datetime, :placeholder => "Select Your Delivery Date", :required => true, :cols => 40, :rows => 4, :class => "form-control datepicker" %>
+                <br>
+      <%= form.text_area :special_instructions, :placeholder => "Additional Comments / Special Requests", :cols => 40, :rows => 4, :class => "form-control" %>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<div class="well text-right form-buttons" data-hook="buttons">
+  <%= submit_tag Spree.t(:save_and_continue), :class => 'btn btn-lg btn-success' %>
+</div>
+
+<script type="text/javascript">
+/**
+This is a collection of javascript functions and whatnot
+under the spree namespace that do stuff we find helpful.
+Hopefully, this will evolve into a propper class.
+**/
+
+
+jQuery(function($) {
+
+  // Add some tips
+  $('.with-tip').tooltip();
+
+  $('.js-show-index-filters').click(function(){
+    $(".filter-well").slideToggle();
+    $(this).parents(".filter-wrap").toggleClass("collapsed");
+    $("span.icon", $(this)).toggleClass("icon-chevron-down");
+  });
+
+  $(".js-collapse-sidebar").click(function(){
+    $(".main-right-sidebar").toggleClass("collapsed");
+    $("section.content").toggleClass("sidebar-collapsed");
+    $("span.icon", $(this)).toggleClass("icon-chevron-right");
+    $("span.icon", $(this)).toggleClass("icon-chevron-left");
+  });
+
+  $('#main-sidebar').find('[data-toggle="collapse"]').on('click', function()
+    {
+      if($(this).find('.icon-chevron-left').length == 1){
+        $(this).find('.icon-chevron-left').removeClass('icon-chevron-left').addClass('icon-chevron-down');
+      }
+      else {
+        $(this).find('.icon-chevron-down').removeClass('icon-chevron-down').addClass('icon-chevron-left');
+      }
+    }
+  )
+
+  // Sidebar nav toggle functionality
+  var sidebar_toggle = $('#sidebar-toggle');
+
+  sidebar_toggle.on('click', function(){
+    var wrapper = $('#wrapper');
+    var main    = $('#main-part');
+
+    if(wrapper.hasClass('sidebar-minimized')){
+      wrapper.removeClass('sidebar-minimized');
+      main
+        .removeClass('col-sm-12 col-md-12 sidebar-collapsed')
+        .addClass('col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2');
+      $.cookie('sidebar-minimized', 'false', { path: '/admin' });
+    }
+    else {
+      wrapper.addClass('sidebar-minimized');
+      main
+        .removeClass('col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2')
+        .addClass('col-sm-12 col-md-12 sidebar-collapsed');
+      $.cookie('sidebar-minimized', 'true', { path: '/admin' });
+    }
+  });
+
+  $('.sidebar-menu-item').mouseover(function(){
+    if($('#wrapper').hasClass('sidebar-minimized')){
+      $(this).addClass('menu-active');
+      $(this).find('ul.nav').addClass('submenu-active');
+    }
+  });
+  $('.sidebar-menu-item').mouseout(function(){
+    if($('#wrapper').hasClass('sidebar-minimized')){
+      $(this).removeClass('menu-active');
+      $(this).find('ul.nav').removeClass('submenu-active');
+    }
+  });
+
+  // TODO: remove this js temp behaviour and fix this decent
+  // Temp quick search
+  // When there was a search term, copy it
+  $(".js-quick-search").val($(".js-quick-search-target").val());
+  // Catch the quick search form submit and submit the real form
+  $("#quick-search").submit(function(){
+    $(".js-quick-search-target").val($(".js-quick-search").val());
+    $("#table-filter form").submit();
+    return false;
+  });
+
+  // Main menu active item submenu show
+  var active_item = $('#sidebar').find('.selected');
+  active_item.parent().addClass('in');
+  active_item.parent().prev()
+    .find('.icon-chevron-left')
+    .removeClass('icon-chevron-left')
+    .addClass('icon-chevron-down');
+
+  // Replace ▼ and ▲ in sort_link with nicer icons
+  $(".sort_link").each(function(){
+    // Remove the &nbsp; in the text
+    var sort_link_text = $(this).text().replace('\xA0', '');
+
+    if(sort_link_text.indexOf("▼") >= 0){
+      $(this).text(sort_link_text.replace("▼",""));
+      $(this).append('<span class="icon icon-chevron-down"></span>');
+    } else if(sort_link_text.indexOf("▲") >= 0){
+      $(this).text(sort_link_text.replace("▲",""));
+      $(this).append('<span class="icon icon-chevron-up"></span>');
+    }
+  });
+
+  // Clickable ransack filters
+  $(".js-add-filter").click(function() {
+    var ransack_field = $(this).data("ransack-field");
+    var ransack_value = $(this).data("ransack-value");
+
+    $("#" + ransack_field).val(ransack_value);
+    $("#table-filter form").submit();
+  });
+
+  $(document).on("click", ".js-delete-filter", function() {
+    var ransack_field = $(this).parents(".js-filter").data("ransack-field");
+
+    $("#" + ransack_field).val('');
+    $("#table-filter form").submit();
+  });
+
+  $(".js-filterable").each(function() {
+    var $this = $(this);
+
+    if ($this.val()) {
+      var ransack_value, filter;
+      var ransack_field = $this.attr("id");
+      var label = $('label[for="' + ransack_field + '"]');
+
+      if ($this.is("select")) {
+        ransack_value = $this.find('option:selected').text();
+      } else {
+        ransack_value = $this.val();
+      }
+
+      label = label.text() + ': ' + ransack_value;
+      filter = '<span class="js-filter label label-default" data-ransack-field="' + ransack_field + '">' + label + '<span class="icon icon-delete js-delete-filter"></span></span>';
+
+      $(".js-filters").append(filter).show();
+    }
+  });
+
+  // per page dropdown
+  // preserves all selected filters / queries supplied by user
+  // changes only per_page value
+  $(".js-per-page-select").change(function() {
+    var form  = $(this).closest(".js-per-page-form");
+    var url   = form.attr('action');
+    var value = $(this).val().toString();
+    if (url.match(/\?/)) {
+      url += "&per_page=" + value;
+    } else {
+      url += "?per_page=" + value;
+    }
+    window.location = url;
+  });
+
+  // injects per_page settings to all available search forms
+  // so when user changes some filters / queries per_page is preserved
+  $(document).ready(function() {
+    var perPageDropdown = $(".js-per-page-select:first");
+    if (perPageDropdown.length) {
+      var perPageValue = perPageDropdown.val().toString();
+      var perPageInput = '<input type="hidden" name="per_page" value=' + perPageValue + ' />';
+      $("#table-filter form").append(perPageInput);
+    }
+  });
+
+  // Enable sidebar toggle
+  $("[data-toggle='offcanvas']").click(function(e) {
+    e.preventDefault();
+
+    // If window is small enough, enable sidebar push menu
+    if ($(window).width() <= 992) {
+      $('.row-offcanvas').toggleClass('active');
+      $('.left-side').removeClass("collapse-left");
+      $(".right-side").removeClass("strech");
+      $('.row-offcanvas').toggleClass("relative");
+    } else {
+      // Else, enable content streching
+      $('.left-side').toggleClass("collapse-left");
+      $(".right-side").toggleClass("strech");
+    }
+  });
+
+  // Make flash messages disappear
+  setTimeout('$(".alert-auto-disappear").slideUp()', 5000);
+
+});
+
+
+$.fn.visible = function(cond) { this[cond ? 'show' : 'hide' ]() };
+
+show_flash = function(type, message) {
+  var flash_div = $('.alert-' + type);
+  if (flash_div.length == 0) {
+    flash_div = $('<div class="alert alert-' + type + '" />');
+    $('#content').prepend(flash_div);
+  }
+  flash_div.html(message).show().delay(10000).slideUp();
+}
+
+
+// Apply to individual radio button that makes another element visible when checked
+$.fn.radioControlsVisibilityOfElement = function(dependentElementSelector){
+  if(!this.get(0)){ return  }
+  showValue = this.get(0).value;
+  radioGroup = $("input[name='" + this.get(0).name + "']");
+  radioGroup.each(function(){
+    $(this).click(function(){
+      $(dependentElementSelector).visible(this.checked && this.value == showValue)
+    });
+    if(this.checked){ this.click() }
+  });
+}
+
+handle_date_picker_fields = function(){
+  var dateToday = new Date();
+  var minDate   = dateToday.setDate(dateToday.getDate() + 3);
+  $('.datepicker').datepicker({
+    defaultDate: minDate,
+    minDate: dateToday,
+    dateFormat: "dd-M-yy",
+    dayNames: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    dayNamesMin: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    firstDay: "0",
+    monthNames: ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+    // prevText: "Spree.translations.previous",
+    // nextText: "Spree.translations.next",
+    showOn: "focus"
+  });
+
+  // Correctly display range dates
+  $('.date-range-filter .datepicker-from').datepicker('option', 'onSelect', function(selectedDate) {
+    $(".date-range-filter .datepicker-to" ).datepicker( "option", "minDate", selectedDate );
+  });
+  $('.date-range-filter .datepicker-to').datepicker('option', 'onSelect', function(selectedDate) {
+    $(".date-range-filter .datepicker-from" ).datepicker( "option", "maxDate", selectedDate );
+  });
+}
+
+$(document).ready(function(){
+  handle_date_picker_fields();
+  $(".observe_field").on('change', function() {
+    target = $(this).data("update");
+    $(target).hide();
+    $.ajax({ dataType: 'html',
+             url: $(this).data("base-url")+encodeURIComponent($(this).val()),
+             type: 'get',
+             success: function(data){
+               $(target).html(data);
+               $(target).show();
+             }
+    });
+  });
+
+  var uniqueId = 1;
+  $('.spree_add_fields').click(function() {
+    var target = $(this).data("target");
+    var new_table_row = $(target + ' tr:visible:last').clone();
+    var new_id = new Date().getTime() + (uniqueId++);
+    new_table_row.find("input, select").each(function () {
+      var el = $(this);
+      el.val("");
+      el.prop("id", el.prop("id").replace(/\d+/, new_id))
+      el.prop("name", el.prop("name").replace(/\d+/, new_id))
+    })
+    // When cloning a new row, set the href of all icons to be an empty "#"
+    // This is so that clicking on them does not perform the actions for the
+    // duplicated row
+    new_table_row.find("a").each(function () {
+      var el = $(this);
+      el.prop('href', '#');
+    })
+    $(target).prepend(new_table_row);
+  })
+
+  $('body').on('click', '.delete-resource', function() {
+    var el = $(this);
+    if (confirm(el.data("confirm"))) {
+      $.ajax({
+        type: 'POST',
+        url: $(this).prop("href"),
+        data: {
+          _method: 'delete',
+          authenticity_token: AUTH_TOKEN
+        },
+        dataType: 'script',
+        success: function(response) {
+          var $flash_element = $('.alert-success');
+          if ($flash_element.length) {
+            el.parents("tr").fadeOut('hide', function() {
+              $(this).remove();
+            });
+          }
+        },
+        error: function(response, textStatus, errorThrown) {
+          show_flash('error', response.responseText);
+        }
+      });
+    }
+    return false;
+  });
+
+  $('body').on('click', 'a.spree_remove_fields', function() {
+    el = $(this);
+    el.prev("input[type=hidden]").val("1");
+    el.closest(".fields").hide();
+    if (el.prop("href").substr(-1) == '#') {
+      el.parents("tr").fadeOut('hide');
+    }else if (el.prop("href")) {
+      $.ajax({
+        type: 'POST',
+        url: el.prop("href"),
+        data: {
+          _method: 'delete',
+          authenticity_token: AUTH_TOKEN
+        },
+        success: function(response) {
+          el.parents("tr").fadeOut('hide');
+        },
+        error: function(response, textStatus, errorThrown) {
+          show_flash('error', response.responseText);
+        }
+
+      })
+    }
+    return false;
+  });
+
+  $('body').on('click', '.select_properties_from_prototype', function(){
+    $("#busy_indicator").show();
+    var clicked_link = $(this);
+    $.ajax({ dataType: 'script', url: clicked_link.prop("href"), type: 'get',
+        success: function(data){
+          clicked_link.parent("td").parent("tr").hide();
+          $("#busy_indicator").hide();
+        }
+    });
+    return false;
+  });
+
+  // Fix sortable helper
+  var fixHelper = function(e, ui) {
+      ui.children().each(function() {
+          $(this).width($(this).width());
+      });
+      return ui;
+  };
+
+  $('table.sortable').ready(function(){
+    var td_count = $(this).find('tbody tr:first-child td').length
+    $('table.sortable tbody').sortable(
+      {
+        handle: '.handle',
+        helper: fixHelper,
+        placeholder: 'ui-sortable-placeholder',
+        update: function(event, ui) {
+          $("#progress").show();
+          positions = {};
+          $.each($('table.sortable tbody tr'), function(position, obj){
+            reg = /spree_(\w+_?)+_(\d+)/;
+            parts = reg.exec($(obj).prop('id'));
+            if (parts) {
+              positions['positions['+parts[2]+']'] = position;
+            }
+          });
+          $.ajax({
+            type: 'POST',
+            dataType: 'script',
+            url: $(ui.item).closest("table.sortable").data("sortable-link"),
+            data: positions,
+            success: function(data){ $("#progress").hide(); }
+          });
+        },
+        start: function (event, ui) {
+          // Set correct height for placehoder (from dragged tr)
+          ui.placeholder.height(ui.item.height())
+          // Fix placeholder content to make it correct width
+          ui.placeholder.html("<td colspan='"+(td_count-1)+"'></td><td class='actions'></td>")
+        },
+        stop: function (event, ui) {
+          // Fix odd/even classes after reorder
+          $("table.sortable tr:even").removeClass("odd even").addClass("even");
+          $("table.sortable tr:odd").removeClass("odd even").addClass("odd");
+        }
+
+      });
+  });
+
+  $('a.dismiss').click(function() {
+    $(this).parent().fadeOut();
+  });
+
+  window.Spree.advanceOrder = function() {
+      $.ajax({
+          type: "PUT",
+          async: false,
+          data: {
+            token: Spree.api_key
+          },
+          url: Spree.url(Spree.routes.checkouts_api + "/" + order_number + "/advance")
+      }).done(function() {
+          window.location.reload();
+      });
+  }
+});
+</script>
+<style type="text/css">
+/*!
+ * jQuery UI Datepicker 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/datepicker/#theming
+ */
+/*
+
+
+ */
+
+.ui-datepicker {
+  width: 17em;
+  padding: .2em .2em 0;
+  display: none;
+}
+.ui-datepicker .ui-datepicker-header {
+  position: relative;
+  padding: .2em 0;
+}
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+  position: absolute;
+  top: 2px;
+  width: 1.8em;
+  height: 1.8em;
+}
+.ui-datepicker .ui-datepicker-prev-hover,
+.ui-datepicker .ui-datepicker-next-hover {
+  top: 1px;
+}
+.ui-datepicker .ui-datepicker-prev {
+  left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+  right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev-hover {
+  left: 1px;
+}
+.ui-datepicker .ui-datepicker-next-hover {
+  right: 1px;
+}
+.ui-datepicker .ui-datepicker-prev span,
+.ui-datepicker .ui-datepicker-next span {
+  display: block;
+  position: absolute;
+  left: 50%;
+  margin-left: -8px;
+  top: 50%;
+  margin-top: -8px;
+}
+.ui-datepicker .ui-datepicker-title {
+  margin: 0 2.3em;
+  line-height: 1.8em;
+  text-align: center;
+}
+.ui-datepicker .ui-datepicker-title select {
+  font-size: 1em;
+  margin: 1px 0;
+}
+.ui-datepicker select.ui-datepicker-month,
+.ui-datepicker select.ui-datepicker-year {
+  width: 45%;
+}
+.ui-datepicker table {
+  width: 100%;
+  font-size: .9em;
+  border-collapse: collapse;
+  margin: 0 0 .4em;
+}
+.ui-datepicker th {
+  padding: .7em .3em;
+  text-align: center;
+  font-weight: bold;
+  border: 0;
+}
+.ui-datepicker td {
+  border: 0;
+  padding: 1px;
+}
+.ui-datepicker td span,
+.ui-datepicker td a {
+  display: block;
+  padding: .2em;
+  text-align: right;
+  text-decoration: none;
+}
+.ui-datepicker .ui-datepicker-buttonpane {
+  background-image: none;
+  margin: .7em 0 0 0;
+  padding: 0 .2em;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.ui-datepicker .ui-datepicker-buttonpane button {
+  float: right;
+  margin: .5em .2em .4em;
+  cursor: pointer;
+  padding: .2em .6em .3em .6em;
+  width: auto;
+  overflow: visible;
+}
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current {
+  float: left;
+}
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi {
+  width: auto;
+}
+.ui-datepicker-multi .ui-datepicker-group {
+  float: left;
+}
+.ui-datepicker-multi .ui-datepicker-group table {
+  width: 95%;
+  margin: 0 auto .4em;
+}
+.ui-datepicker-multi-2 .ui-datepicker-group {
+  width: 50%;
+}
+.ui-datepicker-multi-3 .ui-datepicker-group {
+  width: 33.3%;
+}
+.ui-datepicker-multi-4 .ui-datepicker-group {
+  width: 25%;
+}
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header {
+  border-left-width: 0;
+}
+.ui-datepicker-multi .ui-datepicker-buttonpane {
+  clear: left;
+}
+.ui-datepicker-row-break {
+  clear: both;
+  width: 100%;
+  font-size: 0;
+}
+
+/* RTL support */
+.ui-datepicker-rtl {
+  direction: rtl;
+}
+.ui-datepicker-rtl .ui-datepicker-prev {
+  right: 2px;
+  left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next {
+  left: 2px;
+  right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-prev:hover {
+  right: 1px;
+  left: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-next:hover {
+  left: 1px;
+  right: auto;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane {
+  clear: right;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button {
+  float: left;
+}
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current,
+.ui-datepicker-rtl .ui-datepicker-group {
+  float: right;
+}
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header,
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header {
+  border-right-width: 0;
+  border-left-width: 1px;
+}
+
+/*!
+ * jQuery UI CSS Framework 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+/*
+
+ */
+
+/* Layout helpers
+----------------------------------*/
+
+.ui-helper-hidden {
+  display: none;
+}
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+  content: "";
+  display: table;
+  border-collapse: collapse;
+}
+.ui-helper-clearfix:after {
+  clear: both;
+}
+.ui-helper-clearfix {
+  min-height: 0; /* support: IE7 */
+}
+.ui-helper-zfix {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.ui-front {
+  z-index: 100;
+}
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled {
+  cursor: default !important;
+}
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon {
+  display: block;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*!
+ * jQuery UI CSS Framework 1.11.4
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/
+ */
+
+/*
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */
+
+
+
+/* Component containers
+----------------------------------*/
+
+.ui-widget {
+}
+.ui-widget .ui-widget {
+  font-size: 1em;
+}
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+}
+.ui-widget-content {
+  border: 1px solid #aaaaaa/*{borderColorContent}*/;
+  background: #ffffff/*{bgColorContent}*/ url(/assets/jquery-ui/ui-bg_flat_75_ffffff_40x100-272bf8417187689eb797f3984155935452ffbc20c38610b2a61960cef1eb6c04.png)/*{bgImgUrlContent}*/ 50%/*{bgContentXPos}*/ 50%/*{bgContentYPos}*/ repeat-x/*{bgContentRepeat}*/;
+  color: #222222/*{fcContent}*/;
+}
+.ui-widget-content a {
+  color: #222222/*{fcContent}*/;
+}
+.ui-widget-header {
+  color: #222222/*{fcHeader}*/;
+  font-weight: bold;
+}
+.ui-widget-header a {
+  color: #222222/*{fcHeader}*/;
+}
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  font-weight: normal/*{fwDefault}*/;
+  color: #555555/*{fcDefault}*/;
+}
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: #555555/*{fcDefault}*/;
+  text-decoration: none;
+}
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  font-weight: normal/*{fwDefault}*/;
+  color: #212121/*{fcHover}*/;
+}
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited,
+.ui-state-focus a,
+.ui-state-focus a:hover,
+.ui-state-focus a:link,
+.ui-state-focus a:visited {
+  color: #212121/*{fcHover}*/;
+  text-decoration: none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  font-weight: normal/*{fwDefault}*/;
+  color: #212121/*{fcActive}*/;
+}
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #212121/*{fcActive}*/;
+  text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+  color: #363636/*{fcHighlight}*/;
+}
+.ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a {
+  color: #363636/*{fcHighlight}*/;
+}
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+  color: #cd0a0a/*{fcError}*/;
+}
+.ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a {
+  color: #cd0a0a/*{fcError}*/;
+}
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+  color: #cd0a0a/*{fcError}*/;
+}
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+  font-weight: bold;
+}
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+  opacity: .7;
+  filter:Alpha(Opacity=70); /* support: IE8 */
+  font-weight: normal;
+}
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+  opacity: .35;
+  filter:Alpha(Opacity=35); /* support: IE8 */
+  background-image: none;
+}
+.ui-state-disabled .ui-icon {
+  filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon {
+  width: 16px;
+  height: 16px;
+}
+.ui-icon,
+.ui-widget-content .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_222222_256x240-57adb0d65f4e91dacfee975d9574422bee7486c8a182d60133728c672f2cdbbc.png)/*{iconsContent}*/;
+}
+.ui-widget-header .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_222222_256x240-57adb0d65f4e91dacfee975d9574422bee7486c8a182d60133728c672f2cdbbc.png)/*{iconsHeader}*/;
+}
+.ui-state-default .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_888888_256x240-ea2e29625de3463465e93b002b065f5833e05b97f7a052b1c141e754d62e1a8b.png)/*{iconsDefault}*/;
+}
+.ui-state-hover .ui-icon,
+.ui-state-focus .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_454545_256x240-5d0cf948d7765488899a06be518f8885ef572725e6d8a9733eab7e6b746fce11.png)/*{iconsHover}*/;
+}
+.ui-state-active .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_454545_256x240-5d0cf948d7765488899a06be518f8885ef572725e6d8a9733eab7e6b746fce11.png)/*{iconsActive}*/;
+}
+.ui-state-highlight .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_2e83ff_256x240-20f8c6667afc48aa433ee9eb6d8a0584bdbd6b4a4a9091ff1e6b3adb31e63bd9.png)/*{iconsHighlight}*/;
+}
+.ui-state-error .ui-icon,
+.ui-state-error-text .ui-icon {
+  background-image: url(/assets/jquery-ui/ui-icons_cd0a0a_256x240-1e32c6dbf5d3fd342f27a78aa881550d6412aa207f48468724a6a15402b6041b.png)/*{iconsError}*/;
+}
+
+/* positioning */
+.ui-icon-blank { background-position: 16px 16px; }
+.ui-icon-carat-1-n { background-position: 0 0; }
+.ui-icon-carat-1-ne { background-position: -16px 0; }
+.ui-icon-carat-1-e { background-position: -32px 0; }
+.ui-icon-carat-1-se { background-position: -48px 0; }
+.ui-icon-carat-1-s { background-position: -64px 0; }
+.ui-icon-carat-1-sw { background-position: -80px 0; }
+.ui-icon-carat-1-w { background-position: -96px 0; }
+.ui-icon-carat-1-nw { background-position: -112px 0; }
+.ui-icon-carat-2-n-s { background-position: -128px 0; }
+.ui-icon-carat-2-e-w { background-position: -144px 0; }
+.ui-icon-triangle-1-n { background-position: 0 -16px; }
+.ui-icon-triangle-1-ne { background-position: -16px -16px; }
+.ui-icon-triangle-1-e { background-position: -32px -16px; }
+.ui-icon-triangle-1-se { background-position: -48px -16px; }
+.ui-icon-triangle-1-s { background-position: -64px -16px; }
+.ui-icon-triangle-1-sw { background-position: -80px -16px; }
+.ui-icon-triangle-1-w { background-position: -96px -16px; }
+.ui-icon-triangle-1-nw { background-position: -112px -16px; }
+.ui-icon-triangle-2-n-s { background-position: -128px -16px; }
+.ui-icon-triangle-2-e-w { background-position: -144px -16px; }
+.ui-icon-arrow-1-n { background-position: 0 -32px; }
+.ui-icon-arrow-1-ne { background-position: -16px -32px; }
+.ui-icon-arrow-1-e { background-position: -32px -32px; }
+.ui-icon-arrow-1-se { background-position: -48px -32px; }
+.ui-icon-arrow-1-s { background-position: -64px -32px; }
+.ui-icon-arrow-1-sw { background-position: -80px -32px; }
+.ui-icon-arrow-1-w { background-position: -96px -32px; }
+.ui-icon-arrow-1-nw { background-position: -112px -32px; }
+.ui-icon-arrow-2-n-s { background-position: -128px -32px; }
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px; }
+.ui-icon-arrow-2-e-w { background-position: -160px -32px; }
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px; }
+.ui-icon-arrowstop-1-n { background-position: -192px -32px; }
+.ui-icon-arrowstop-1-e { background-position: -208px -32px; }
+.ui-icon-arrowstop-1-s { background-position: -224px -32px; }
+.ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.ui-icon-arrowthick-1-n { background-position: 0 -48px; }
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
+.ui-icon-arrowthick-1-e { background-position: -32px -48px; }
+.ui-icon-arrowthick-1-se { background-position: -48px -48px; }
+.ui-icon-arrowthick-1-s { background-position: -64px -48px; }
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px; }
+.ui-icon-arrowthick-1-w { background-position: -96px -48px; }
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px; }
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px; }
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px; }
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px; }
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px; }
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px; }
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px; }
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px; }
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px; }
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px; }
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px; }
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px; }
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px; }
+.ui-icon-arrow-4 { background-position: 0 -80px; }
+.ui-icon-arrow-4-diag { background-position: -16px -80px; }
+.ui-icon-extlink { background-position: -32px -80px; }
+.ui-icon-newwin { background-position: -48px -80px; }
+.ui-icon-refresh { background-position: -64px -80px; }
+.ui-icon-shuffle { background-position: -80px -80px; }
+.ui-icon-transfer-e-w { background-position: -96px -80px; }
+.ui-icon-transferthick-e-w { background-position: -112px -80px; }
+.ui-icon-folder-collapsed { background-position: 0 -96px; }
+.ui-icon-folder-open { background-position: -16px -96px; }
+.ui-icon-document { background-position: -32px -96px; }
+.ui-icon-document-b { background-position: -48px -96px; }
+.ui-icon-note { background-position: -64px -96px; }
+.ui-icon-mail-closed { background-position: -80px -96px; }
+.ui-icon-mail-open { background-position: -96px -96px; }
+.ui-icon-suitcase { background-position: -112px -96px; }
+.ui-icon-comment { background-position: -128px -96px; }
+.ui-icon-person { background-position: -144px -96px; }
+.ui-icon-print { background-position: -160px -96px; }
+.ui-icon-trash { background-position: -176px -96px; }
+.ui-icon-locked { background-position: -192px -96px; }
+.ui-icon-unlocked { background-position: -208px -96px; }
+.ui-icon-bookmark { background-position: -224px -96px; }
+.ui-icon-tag { background-position: -240px -96px; }
+.ui-icon-home { background-position: 0 -112px; }
+.ui-icon-flag { background-position: -16px -112px; }
+.ui-icon-calendar { background-position: -32px -112px; }
+.ui-icon-cart { background-position: -48px -112px; }
+.ui-icon-pencil { background-position: -64px -112px; }
+.ui-icon-clock { background-position: -80px -112px; }
+.ui-icon-disk { background-position: -96px -112px; }
+.ui-icon-calculator { background-position: -112px -112px; }
+.ui-icon-zoomin { background-position: -128px -112px; }
+.ui-icon-zoomout { background-position: -144px -112px; }
+.ui-icon-search { background-position: -160px -112px; }
+.ui-icon-wrench { background-position: -176px -112px; }
+.ui-icon-gear { background-position: -192px -112px; }
+.ui-icon-heart { background-position: -208px -112px; }
+.ui-icon-star { background-position: -224px -112px; }
+.ui-icon-link { background-position: -240px -112px; }
+.ui-icon-cancel { background-position: 0 -128px; }
+.ui-icon-plus { background-position: -16px -128px; }
+.ui-icon-plusthick { background-position: -32px -128px; }
+.ui-icon-minus { background-position: -48px -128px; }
+.ui-icon-minusthick { background-position: -64px -128px; }
+.ui-icon-close { background-position: -80px -128px; }
+.ui-icon-closethick { background-position: -96px -128px; }
+.ui-icon-key { background-position: -112px -128px; }
+.ui-icon-lightbulb { background-position: -128px -128px; }
+.ui-icon-scissors { background-position: -144px -128px; }
+.ui-icon-clipboard { background-position: -160px -128px; }
+.ui-icon-copy { background-position: -176px -128px; }
+.ui-icon-contact { background-position: -192px -128px; }
+.ui-icon-image { background-position: -208px -128px; }
+.ui-icon-video { background-position: -224px -128px; }
+.ui-icon-script { background-position: -240px -128px; }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-info { background-position: -16px -144px; }
+.ui-icon-notice { background-position: -32px -144px; }
+.ui-icon-help { background-position: -48px -144px; }
+.ui-icon-check { background-position: -64px -144px; }
+.ui-icon-bullet { background-position: -80px -144px; }
+.ui-icon-radio-on { background-position: -96px -144px; }
+.ui-icon-radio-off { background-position: -112px -144px; }
+.ui-icon-pin-w { background-position: -128px -144px; }
+.ui-icon-pin-s { background-position: -144px -144px; }
+.ui-icon-play { background-position: 0 -160px; }
+.ui-icon-pause { background-position: -16px -160px; }
+.ui-icon-seek-next { background-position: -32px -160px; }
+.ui-icon-seek-prev { background-position: -48px -160px; }
+.ui-icon-seek-end { background-position: -64px -160px; }
+.ui-icon-seek-start { background-position: -80px -160px; }
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
+.ui-icon-seek-first { background-position: -80px -160px; }
+.ui-icon-stop { background-position: -96px -160px; }
+.ui-icon-eject { background-position: -112px -160px; }
+.ui-icon-volume-off { background-position: -128px -160px; }
+.ui-icon-volume-on { background-position: -144px -160px; }
+.ui-icon-power { background-position: 0 -176px; }
+.ui-icon-signal-diag { background-position: -16px -176px; }
+.ui-icon-signal { background-position: -32px -176px; }
+.ui-icon-battery-0 { background-position: -48px -176px; }
+.ui-icon-battery-1 { background-position: -64px -176px; }
+.ui-icon-battery-2 { background-position: -80px -176px; }
+.ui-icon-battery-3 { background-position: -96px -176px; }
+.ui-icon-circle-plus { background-position: 0 -192px; }
+.ui-icon-circle-minus { background-position: -16px -192px; }
+.ui-icon-circle-close { background-position: -32px -192px; }
+.ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.ui-icon-circle-triangle-n { background-position: -96px -192px; }
+.ui-icon-circle-arrow-e { background-position: -112px -192px; }
+.ui-icon-circle-arrow-s { background-position: -128px -192px; }
+.ui-icon-circle-arrow-w { background-position: -144px -192px; }
+.ui-icon-circle-arrow-n { background-position: -160px -192px; }
+.ui-icon-circle-zoomin { background-position: -176px -192px; }
+.ui-icon-circle-zoomout { background-position: -192px -192px; }
+.ui-icon-circle-check { background-position: -208px -192px; }
+.ui-icon-circlesmall-plus { background-position: 0 -208px; }
+.ui-icon-circlesmall-minus { background-position: -16px -208px; }
+.ui-icon-circlesmall-close { background-position: -32px -208px; }
+.ui-icon-squaresmall-plus { background-position: -48px -208px; }
+.ui-icon-squaresmall-minus { background-position: -64px -208px; }
+.ui-icon-squaresmall-close { background-position: -80px -208px; }
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px; }
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px; }
+.ui-icon-grip-solid-vertical { background-position: -32px -224px; }
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
+.ui-icon-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+  border-top-left-radius: 4px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+  border-top-right-radius: 4px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+  border-bottom-left-radius: 4px/*{cornerRadius}*/;
+}
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+  border-bottom-right-radius: 4px/*{cornerRadius}*/;
+}
+
+/* Overlays */
+.ui-widget-overlay {
+  background: #aaaaaa/*{bgColorOverlay}*/ url(/assets/jquery-ui/ui-bg_flat_0_aaaaaa_40x100-ec63468e333a20f8f03aaecff19c6f4e73f88117bcc9f5c2cafca0ac594c88c9.png)/*{bgImgUrlOverlay}*/ 50%/*{bgOverlayXPos}*/ 50%/*{bgOverlayYPos}*/ repeat-x/*{bgOverlayRepeat}*/;
+  opacity: .3/*{opacityOverlay}*/;
+  filter: Alpha(Opacity=30)/*{opacityFilterOverlay}*/; /* support: IE8 */
+}
+.ui-widget-shadow {
+  margin: -8px/*{offsetTopShadow}*/ 0 0 -8px/*{offsetLeftShadow}*/;
+  padding: 8px/*{thicknessShadow}*/;
+  background: #aaaaaa/*{bgColorShadow}*/ url(/assets/jquery-ui/ui-bg_flat_0_aaaaaa_40x100-ec63468e333a20f8f03aaecff19c6f4e73f88117bcc9f5c2cafca0ac594c88c9.png)/*{bgImgUrlShadow}*/ 50%/*{bgShadowXPos}*/ 50%/*{bgShadowYPos}*/ repeat-x/*{bgShadowRepeat}*/;
+  opacity: .3/*{opacityShadow}*/;
+  filter: Alpha(Opacity=30)/*{opacityFilterShadow}*/; /* support: IE8 */
+  border-radius: 8px/*{cornerRadiusShadow}*/;
+}
+
+.ui-icon-circle-triangle-e {
+
+}
+
+</style>

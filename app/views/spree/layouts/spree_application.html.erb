@@ -1,0 +1,61 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html class="ie ie6" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie ie7" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie ie8" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie ie9" lang="<%= I18n.locale %>"> <![endif]-->
+<!--[if gt IE 9]><!--><html lang="<%= I18n.locale %>"><!--<![endif]-->
+  <head data-hook="inside_head">
+    <%= render partial: 'spree/shared/head' %>
+  </head>
+  <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-85341926-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+  <body class="<%= body_class %>" id="<%= @body_id || 'default' %>" data-hook="body">
+    <%= render partial: 'spree/shared/google_analytics.js' %>
+    <%= render partial: 'spree/shared/header' %>
+
+    <div class="container">
+      <div class="row" data-hook>
+        <!-- <%= breadcrumbs(@taxon) %> -->
+
+        <!-- <%= render partial: 'spree/shared/sidebar' if content_for? :sidebar %> -->
+
+        <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-10 col-sm-offset-1 col-md-12 col-md-offset-0" : "col-sm-10 col-sm-offset-1 col-md-12 col-md-offset-0" %>" data-hook>
+          <%= flash_messages %>
+          <%= yield %>
+        </div>
+
+        <%= yield :templates %>
+      </div>
+    </div>
+
+    <% if controller_name.include? 'home' %>
+      <div class="image-drinks">
+        <div class="quote">
+          <h4 class="quote-text">A GREAT STORY ALWAYS STARTS <span id="break"></span>WITH A DRINK</h4>
+          <span id="company-name">- The Glass Formula</span>
+        </div>
+        <!-- <img src="assets/drinks.jpg"> -->
+      </div>
+
+      <div class="container">
+        <div class="row" data-hook>
+          <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9" %>" data-hook>
+            <div data-hook="homepage_products">
+              <!-- <h2 class="text-center" style="margin-top: 50px; font-size: 25px;">We've Partnered With:</h2> -->
+              <!-- <p class="how-we-work-blurb" style="margin-bottom: 50px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus fuga, ad non a debitis tempore. Animi earum tempora quidem autem ab iste provident repellendus, pariatur, facere nesciunt facilis! Explicabo, distinctio! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore recusandae tempora necessitatibus omnis harum ullam officia odit ea vitae doloremque dolorem in rem ipsa ratione unde iste inventore, quaerat aliquam!</p> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= render partial: 'spree/shared/footer' %>
+  </body>
+</html>
