@@ -6,7 +6,7 @@ module Spree
       order = params[:order]
       OrderMailer.contact_email(order)
 
-      redirect_to '/shop'
+      redirect_to '/'
     end
   end
 end

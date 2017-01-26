@@ -221,7 +221,9 @@ img.social-media-icons {
     width: 300px;
   }
   @media (min-width: $breakpoint-md) {
-    font-weight: lighter;
+    .btn {
+      font-weight: lighter;
+    }
   }
 }
 
