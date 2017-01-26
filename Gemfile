@@ -29,6 +29,8 @@ gem 'spree_gateway', '~> 3.1.0'
 gem 'spree_mail_settings', github: 'spree-contrib/spree_mail_settings', branch: '3-1-stable'
 gem 'spree_sitemap', github: 'spree-contrib/spree_sitemap', branch: '3-1-stable'
 
+gem 'font-awesome-sass'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
