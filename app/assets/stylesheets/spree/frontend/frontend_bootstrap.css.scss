@@ -149,7 +149,7 @@ img.social-media-icons {
   margin: 0 0 30px 0;
 }
 
-.grid-drinks-caption {
+.grid-drinks-caption-xs, .grid-drinks-caption-md {
   position: absolute;
   top: 0;
   width: 100%;
@@ -159,21 +159,52 @@ img.social-media-icons {
   text-align: center;
   text-transform: uppercase;
   cursor: default;
+  border-bottom: 1px solid black;
+  &.grid-drinks-caption-xs {
+    padding-top: 42%;
+  }
 }
 
-.grid-overlay {
-  .grid-drinks, {
-    opacity: 0.5;
-  }
-  .grid-drinks-caption {
-    border-bottom: 1px solid black;
-  }
-  &:hover {
-    .grid-drinks {
-      opacity: 1;
+.grid-overlay-xs {
+    .grid-drinks, {
+      opacity: 0.4;
     }
-    .grid-drinks-caption {
-      visibility: hidden;
+    &:hover {
+      .grid-drinks {
+        opacity: 1;
+      }
+      .grid-drinks-caption-xs {
+        visibility: hidden;
+      }
+    }
+  }
+
+
+.grid-drinks-caption-md {
+  display: none;
+}
+
+@media (min-width: $breakpoint-md) {
+  .grid-overlay-xs .grid-drinks {
+    opacity: 1;
+  }
+  .grid-drinks-caption-xs {
+    display: none;
+  }
+  .grid-drinks-caption-md {
+    display: inline-block;
+  }
+  .grid-overlay-md {
+    .grid-drinks, {
+      opacity: 0.4;
+    }
+    &:hover {
+      .grid-drinks {
+        opacity: 1;
+      }
+      .grid-drinks-caption-md {
+        visibility: hidden;
+      }
     }
   }
 }
