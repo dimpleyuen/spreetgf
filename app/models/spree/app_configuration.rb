@@ -24,12 +24,33 @@ module Spree
     preference :admin_interface_logo, :string, default: 'logo/The_Glass_Formula_Logo.png'
     preference :email_banner, :string, default: 'logo/TGF_logo_big_inverted.png'
     preference :customize_package_image, :string, default: 'customize.jpg'
+
+    # catalogs
     preference :cuhk_catalog, :string, default: 'CUHK_Catalog.pdf'
     preference :brand_profile, :string, default: 'brandprofile.pdf'
+    # social media
     preference :footer_logo, :string, default: 'logo/The_Glass_Formula_Logo_Round.png'
     preference :facebook_icon, :string, default: 'Facebook_Icon.png'
     preference :instagram_icon, :string, default: 'Instagram_Icon.png'
     preference :linkedin_icon, :string, default: 'LinkedIn_Icon.png'
+
+    # main photos
+    preference :drink_1, :string, default: 'gingerfizz.png'
+    preference :drink_2, :string, default: 'oldfashioned.png'
+    preference :drink_3, :string, default: 'vodkalavenade.png'
+    preference :drink_4, :string, default: 'giftset01.png'
+    preference :drink_5, :string, default: 'giftset02.png'
+    preference :drink_6, :string, default: 'hibiscusroyale.jpg'
+    preference :drink_7, :string, default: 'bpnotic.jpg'
+    preference :drink_8, :string, default: 'flowerhamper.jpg'
+
+    #partners
+    preference :partner_1, :string, default: 'baker.png'
+    preference :partner_2, :string, default: 'blueprint.png'
+    preference :partner_3, :string, default: 'theworkproject.png'
+    preference :partner_4, :string, default: 'pwc.png'
+
+
     preference :admin_path, :string, default: '/admin'
     preference :admin_products_per_page, :integer, default: 30
     preference :allow_checkout_on_gateway_error, :boolean, default: false

@@ -90,7 +90,7 @@ $font-size-base: 16px;
 
 #spree-footer {
   background: $gray-dark;
-  padding-top: $padding-base-horizontal;
+  padding-top: 0;
   padding-bottom: $padding-base-horizontal;
   margin-top: $line-height-computed;
   color: white;
@@ -104,6 +104,13 @@ $font-size-base: 16px;
       font-size: 14px !important;
     }
   }
+}
+
+.contact-info {
+  background-color: #6a6a6a;
+  font-size: 17px;
+  padding: 20px;
+  text-align: center;
 }
 
 img.logo-footer {
@@ -128,130 +135,45 @@ img.social-media-icons {
 }
 
 .how-we-work-blurb {
+  text-align: justify;
   font-size: 17px;
   font-family: $font-family-sans-serif-light;
   font-weight: 300;
 }
 
-.icon-blurb {
-  font-family: $font-family-sans-serif-light;
-  font-weight: 300;
+.grid-cell {
+  padding: 0;
 }
 
-.how-we-work {
-  margin: 30px 0 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.image-grid {
+  margin: 0 0 30px 0;
+}
 
-  @media (min-width: $breakpoint-sm) {
-    flex-direction:row;
-    margin: 50px 0;
+.grid-drinks-caption {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding-left: 7px;
+  padding-right: 7px;
+  padding-top: 45%;
+  text-align: center;
+  text-transform: uppercase;
+  cursor: default;
+}
+
+.grid-overlay {
+  .grid-drinks, {
+    opacity: 0.5;
   }
-
-
-  .how-we-work-icons {
-    flex-direction:row;
-    margin-bottom: 25px;
-    @media (min-width: $breakpoint-sm) {
-      padding: 0 15px;
-      margin-bottom: 0;
+  .grid-drinks-caption {
+    border-bottom: 1px solid black;
+  }
+  &:hover {
+    .grid-drinks {
+      opacity: 1;
     }
-    @media (min-width: $breakpoint-md) {
-      padding: 0 50px;
-    }
-
-    .glyphicon {
-      border: 3px dotted $brand-red-strong;
-      border-radius: 90px;
-      color: $brand-red-strong;
-      font-size: 60px;
-      padding: 35px;
-      &:hover {
-        -webkit-animation: pulse2 0.85s linear infinite;
-        -moz-animation: pulse2 0.85s linear infinite;
-        -ms-animation: pulse2 0.85s linear infinite;
-        animation: pulse2 0.7s linear infinite;
-        @keyframes "pulse2" {
-         0% {
-            -webkit-transform: scale(1.1);
-            -moz-transform: scale(1.1);
-            -o-transform: scale(1.1);
-            -ms-transform: scale(1.1);
-            transform: scale(1.1);
-         }
-         50% {
-            -webkit-transform: scale(0.8);
-            -moz-transform: scale(0.8);
-            -o-transform: scale(0.8);
-            -ms-transform: scale(0.8);
-            transform: scale(0.8);
-         }
-         100% {
-            -webkit-transform: scale(1);
-            -moz-transform: scale(1);
-            -o-transform: scale(1);
-            -ms-transform: scale(1);
-            transform: scale(1);
-         }
-
-        }
-
-        @-moz-keyframes pulse2 {
-         0% {
-           -moz-transform: scale(1.1);
-           transform: scale(1.1);
-         }
-         50% {
-           -moz-transform: scale(0.8);
-           transform: scale(0.8);
-         }
-         100% {
-           -moz-transform: scale(1);
-           transform: scale(1);
-         }
-
-        }
-
-        @-webkit-keyframes "pulse2" {
-         0% {
-           -webkit-transform: scale(1.1);
-           transform: scale(1.1);
-         }
-         50% {
-           -webkit-transform: scale(0.8);
-           transform: scale(0.8);
-         }
-         100% {
-           -webkit-transform: scale(1);
-           transform: scale(1);
-         }
-
-        }
-
-        @-ms-keyframes "pulse2" {
-         0% {
-           -ms-transform: scale(1.1);
-           transform: scale(1.1);
-         }
-         50% {
-           -ms-transform: scale(0.8);
-           transform: scale(0.8);
-         }
-         100% {
-           -ms-transform: scale(1);
-           transform: scale(1);
-         }
-        }
-      }
-      @media (min-width: $breakpoint-sm) {
-        font-size: 55px;
-        padding: 35px;
-      }
-      @media (min-width: $breakpoint-md) {
-        font-size: 80px;
-        padding: 45px;
-      }
+    .grid-drinks-caption {
+      visibility: hidden;
     }
   }
 }
@@ -261,7 +183,49 @@ img.social-media-icons {
   margin-bottom: 50px;
   .btn {
     width: 300px;
+    font-weight: lighter;
   }
+}
+
+// Our Services Section ----------------------------------
+.our-services {
+  background-color: rgba(51, 51, 51, 0.73);
+  color: white;
+  text-align: center;
+  padding: 50px 0;
+}
+
+.services {
+ text-transform: uppercase;
+ border-bottom: 1px solid white;
+ font-weight: lighter;
+ font-size: 21px;
+ &:nth-of-type(1) {
+  margin-top: 0;
+ }
+}
+
+.services-wrap {
+  width: 66%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.service-blurb {
+  margin-bottom: 30px;
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}
+
+// Partners Section --------------------------------------
+.partners {
+  margin: 50px 0;
+  font-size: 20px;
+}
+
+.partners-logo img {
+  margin: 0 50px;
 }
 
 

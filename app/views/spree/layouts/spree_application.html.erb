@@ -37,20 +37,42 @@
     </div>
 
     <% if controller_name.include? 'home' %>
+      <div class="our-services">
+        <div class="services-wrap">
+          <h3 class="services">Serve Classic Cocktails & Mocktails</h3>
+          <p class="service-blurb">Includes professional bartending services with drinks made fresh in front of you and your guests.</p>
+
+          <h3 class="services">Design Your Own Cocktail With Us</h3>
+          <p class="service-blurb">Tell a personal wedding story or showcase your companys' unique branding through a tailor-made signature drink at your party.</p>
+
+          <h3 class="services">Unique Party Favors & Gift Sets</h3>
+          <p class="service-blurb">Customise party favors and gift hampers for bridal showers, weddings and even corporate gifts for your best clients and staff.</p>
+
+          <h3 class="services">HK's First Build-Your-Own-Drink Stations</h3>
+          <p class="service-blurb">Let guests build their own drinks based on their likings and preferences at your very own cocktail & mocktail drink station!</p>
+        </div>
+      </div>
       <div class="image-drinks">
         <div class="quote">
-          <h4 class="quote-text">A GREAT STORY ALWAYS STARTS <span id="break"></span>WITH A DRINK</h4>
+          <h4 class="quote-text">A GREAT STORY ALWAYS STARTS <span id="break"></span>WITH A DRINK.</h4>
           <span id="company-name">- The Glass Formula</span>
         </div>
-        <!-- <img src="assets/drinks.jpg"> -->
       </div>
-
       <div class="container">
         <div class="row" data-hook>
           <div id="content" class="<%= !content_for?(:sidebar) ? "col-sm-12" : "col-sm-8 col-md-9" %>" data-hook>
             <div data-hook="homepage_products">
-              <!-- <h2 class="text-center" style="margin-top: 50px; font-size: 25px;">We've Partnered With:</h2> -->
-              <!-- <p class="how-we-work-blurb" style="margin-bottom: 50px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus fuga, ad non a debitis tempore. Animi earum tempora quidem autem ab iste provident repellendus, pariatur, facere nesciunt facilis! Explicabo, distinctio! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore recusandae tempora necessitatibus omnis harum ullam officia odit ea vitae doloremque dolorem in rem ipsa ratione unde iste inventore, quaerat aliquam!</p> -->
+              <h2 class="text-center partners">WE'VE PARTNERED WITH THESE AWESOME PEOPLE...</h2>
+              <div class="partners-logo text-center">
+                <%= image_tag Spree::Config[:partner_1], alt: "Baker & McKenzie", title: Spree::Store.current.name %>
+                <%= image_tag Spree::Config[:partner_2], alt: "Blueprint Swire Properties Limited", title: Spree::Store.current.name %>
+                <%= image_tag Spree::Config[:partner_3], alt: "The Work Project", title: Spree::Store.current.name %>
+                <%= image_tag Spree::Config[:partner_4], alt: "Pricewaterhouse Coopers", title: Spree::Store.current.name %>
+                <br>
+                <br>
+                <br>
+                ...AND MANY MORE!
+              </div>
             </div>
           </div>
         </div>
