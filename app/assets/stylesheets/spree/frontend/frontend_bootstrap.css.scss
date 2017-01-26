@@ -219,6 +219,8 @@ img.social-media-icons {
   margin-bottom: 50px;
   .btn {
     width: 300px;
+  }
+  @media (min-width: $breakpoint-md) {
     font-weight: lighter;
   }
 }
@@ -234,11 +236,16 @@ img.social-media-icons {
 .services {
  text-transform: uppercase;
  border-bottom: 1px solid white;
- font-weight: lighter;
+
  font-size: 21px;
  &:nth-of-type(1) {
   margin-top: 0;
  }
+}
+@media (min-width: $breakpoint-md) {
+  .services {
+    font-weight: lighter;
+  }
 }
 
 .services-wrap {
