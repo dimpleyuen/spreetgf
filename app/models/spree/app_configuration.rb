@@ -49,6 +49,7 @@ module Spree
     preference :partner_2, :string, default: 'blueprint.png'
     preference :partner_3, :string, default: 'theworkproject.png'
     preference :partner_4, :string, default: 'pwc.png'
+    preference :partner_5, :string, default: 'chalk.png'
 
 
     preference :admin_path, :string, default: '/admin'
