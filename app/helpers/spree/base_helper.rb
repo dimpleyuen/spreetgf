@@ -54,13 +54,13 @@ module Spree
       case controller_name.singularize
       when 'shop'
         meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
-        meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
+        meta[:description] = "Discover our unique services - we promise we're the only beverage caterer you'll ever need for any corporate event, private party or wedding..."
       when 'customize'
         meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
-        meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
+        meta[:description] = "Discover our unique services - we promise we're the only beverage caterer you'll ever need for any corporate event, private party or wedding..."
       when 'term'
         meta[:keywords] = 'the glass formula, tgf, party, drinks, beverage, package, alcohol, cocktail, bridal shower, wedding, proposal, party favors, event, reception, mini cocktail, sparkling wine, champagne, beer, spirits, liquor, red wine, white wine, prosecco, junk, trip, boat, customise, plan'
-        meta[:description] = 'We know planning a party is hard. Let us help to customise the perfect drinks package for your party, event or wedding! We deliver beverages to your door...'
+        meta[:description] = "Discover our unique services - we promise we're the only beverage caterer you'll ever need for any corporate event, private party or wedding..."
       end
 
 
